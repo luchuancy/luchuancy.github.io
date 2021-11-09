@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Categories on Cyul_Life | BLOG</title>
+    <link>https://luchuancy.github.io/categories/</link>
+    <description>Recent content in Categories on Cyul_Life | BLOG</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en</language>
+    <lastBuildDate>Sun, 07 Nov 2021 11:17:48 +0800</lastBuildDate><atom:link href="https://luchuancy.github.io/categories/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>侵删</title>
+      <link>https://luchuancy.github.io/categories/%E4%BE%B5%E5%88%A0/</link>
+      <pubDate>Sun, 07 Nov 2021 11:17:48 +0800</pubDate>
+      
+      <guid>https://luchuancy.github.io/categories/%E4%BE%B5%E5%88%A0/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>转载</title>
+      <link>https://luchuancy.github.io/categories/%E8%BD%AC%E8%BD%BD/</link>
+      <pubDate>Sun, 07 Nov 2021 11:17:48 +0800</pubDate>
+      
+      <guid>https://luchuancy.github.io/categories/%E8%BD%AC%E8%BD%BD/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>category-2</title>
+      <link>https://luchuancy.github.io/categories/category-2/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://luchuancy.github.io/categories/category-2/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>category-3</title>
+      <link>https://luchuancy.github.io/categories/category-3/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://luchuancy.github.io/categories/category-3/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Theme preview</title>
+      <link>https://luchuancy.github.io/categories/theme-preview/</link>
+      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
+      
+      <guid>https://luchuancy.github.io/categories/theme-preview/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>shortcodes</title>
+      <link>https://luchuancy.github.io/categories/shortcodes/</link>
+      <pubDate>Tue, 30 Aug 2016 16:01:23 +0800</pubDate>
+      
+      <guid>https://luchuancy.github.io/categories/shortcodes/</guid>
+      <description></description>
+    </item>
+    
+  </channel>
+</rss>

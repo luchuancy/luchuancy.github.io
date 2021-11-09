@@ -1,0 +1,2 @@
+User-agent: *
+Sitemap: https://luchuancy.github.io/sitemap.xml
