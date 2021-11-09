@@ -6,7 +6,7 @@
     <description>Recent content on Cyul_Life | BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Mon, 08 Nov 2021 21:01:48 +0800</lastBuildDate><atom:link href="http://luchuancy.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Tue, 09 Nov 2021 16:20:48 +0800</lastBuildDate><atom:link href="http://luchuancy.github.io/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>About</title>
       <link>http://luchuancy.github.io/about/</link>
@@ -16,6 +16,24 @@
       <description>Hugo is a static site engine written in Go.
 It makes use of a variety of open source projects including:
  Cobra Viper J Walter Weatherman Cast  Learn more and contribute on GitHub.</description>
+    </item>
+    
+    <item>
+      <title>hugo_github | 命令</title>
+      <link>http://luchuancy.github.io/post/git%E9%83%A8%E7%BD%B2/</link>
+      <pubDate>Tue, 09 Nov 2021 16:20:48 +0800</pubDate>
+      
+      <guid>http://luchuancy.github.io/post/git%E9%83%A8%E7%BD%B2/</guid>
+      <description>hugo打包静态页面 1 $ hugo 生成public/在项目文件夹内 git相关命令 1 2 3 4 5 6 7 $ cd public $ git init $ git remote add origin https://github.com/luchuancy/luchuancy.github.io.git $ git status //查看本地自己修改了多</description>
+    </item>
+    
+    <item>
+      <title>🐖</title>
+      <link>http://luchuancy.github.io/post/git%E9%83%A8%E7%BD%B2-%E5%89%AF%E6%9C%AC/</link>
+      <pubDate>Tue, 09 Nov 2021 16:20:48 +0800</pubDate>
+      
+      <guid>http://luchuancy.github.io/post/git%E9%83%A8%E7%BD%B2-%E5%89%AF%E6%9C%AC/</guid>
+      <description>臭宝在看吗？？？？</description>
     </item>
     
     <item>
