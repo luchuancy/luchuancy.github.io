@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-  <title>hugo_github | 命令 - Cyul_Life | BLOG</title>
+  <title>go、gin | 安装编译 - Cyul_Life | BLOG</title>
   <meta name="renderer" content="webkit" />
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
 
@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Cyul_Life" /><meta name="description" content="hugo打包静态页面 1 $ hugo 生成public/在项目文件夹内 git相关命令 1 2 3 4 5 6 7 8 $ cd public $ git init $ git remote add origin https://github.com/luchuancy/luchuancy.github.io.git $ git status //查看本地自己修改了" />
+<meta name="author" content="Cyul_Life" /><meta name="description" content="Go开发环境配置 SDK: Software Development Kit 软件开发工具包 环境变量配置： GOROOT ，go安装路径 Path ，bin路径 GOPATH ，项目路径 编译方法 1 2 3 4 5 6 7 8 // docs命令 $ go build proj01.go" />
 
 
 
@@ -26,7 +26,7 @@
 <meta name="generator" content="Hugo 0.88.1 with theme even" />
 
 
-<link rel="canonical" href="http://luchuancy.github.io/post/git%E9%83%A8%E7%BD%B2/" />
+<link rel="canonical" href="http://luchuancy.github.io/post/go-%E5%AE%89%E8%A3%85%E7%BC%96%E8%AF%91/" />
 <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
 <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
@@ -39,20 +39,20 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
 
 
-<meta property="og:title" content="hugo_github | 命令" />
-<meta property="og:description" content="hugo打包静态页面 1 $ hugo 生成public/在项目文件夹内 git相关命令 1 2 3 4 5 6 7 8 $ cd public $ git init $ git remote add origin https://github.com/luchuancy/luchuancy.github.io.git $ git status //查看本地自己修改了" />
+<meta property="og:title" content="go、gin | 安装编译" />
+<meta property="og:description" content="Go开发环境配置 SDK: Software Development Kit 软件开发工具包 环境变量配置： GOROOT ，go安装路径 Path ，bin路径 GOPATH ，项目路径 编译方法 1 2 3 4 5 6 7 8 // docs命令 $ go build proj01.go" />
 <meta property="og:type" content="article" />
-<meta property="og:url" content="http://luchuancy.github.io/post/git%E9%83%A8%E7%BD%B2/" /><meta property="article:section" content="post" />
-<meta property="article:published_time" content="2021-11-09T16:20:48+08:00" />
-<meta property="article:modified_time" content="2021-11-09T16:20:48+08:00" />
+<meta property="og:url" content="http://luchuancy.github.io/post/go-%E5%AE%89%E8%A3%85%E7%BC%96%E8%AF%91/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2021-10-20T16:20:48+08:00" />
+<meta property="article:modified_time" content="2021-10-20T16:20:48+08:00" />
 
-<meta itemprop="name" content="hugo_github | 命令">
-<meta itemprop="description" content="hugo打包静态页面 1 $ hugo 生成public/在项目文件夹内 git相关命令 1 2 3 4 5 6 7 8 $ cd public $ git init $ git remote add origin https://github.com/luchuancy/luchuancy.github.io.git $ git status //查看本地自己修改了"><meta itemprop="datePublished" content="2021-11-09T16:20:48+08:00" />
-<meta itemprop="dateModified" content="2021-11-09T16:20:48+08:00" />
-<meta itemprop="wordCount" content="463">
+<meta itemprop="name" content="go、gin | 安装编译">
+<meta itemprop="description" content="Go开发环境配置 SDK: Software Development Kit 软件开发工具包 环境变量配置： GOROOT ，go安装路径 Path ，bin路径 GOPATH ，项目路径 编译方法 1 2 3 4 5 6 7 8 // docs命令 $ go build proj01.go"><meta itemprop="datePublished" content="2021-10-20T16:20:48+08:00" />
+<meta itemprop="dateModified" content="2021-10-20T16:20:48+08:00" />
+<meta itemprop="wordCount" content="321">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
-<meta name="twitter:title" content="hugo_github | 命令"/>
-<meta name="twitter:description" content="hugo打包静态页面 1 $ hugo 生成public/在项目文件夹内 git相关命令 1 2 3 4 5 6 7 8 $ cd public $ git init $ git remote add origin https://github.com/luchuancy/luchuancy.github.io.git $ git status //查看本地自己修改了"/>
+<meta name="twitter:title" content="go、gin | 安装编译"/>
+<meta name="twitter:description" content="Go开发环境配置 SDK: Software Development Kit 软件开发工具包 环境变量配置： GOROOT ，go安装路径 Path ，bin路径 GOPATH ，项目路径 编译方法 1 2 3 4 5 6 7 8 // docs命令 $ go build proj01.go"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -129,10 +129,10 @@
           <article class="post">
     
     <header class="post-header">
-      <h1 class="post-title">hugo_github | 命令</h1>
+      <h1 class="post-title">go、gin | 安装编译</h1>
 
       <div class="post-meta">
-        <span class="post-time"> 2021-11-09 </span>
+        <span class="post-time"> 2021-10-20 </span>
         
         
       </div>
@@ -143,27 +143,38 @@
   <div class="post-toc-content always-active">
     <nav id="TableOfContents">
   <ul>
-    <li><a href="#hugo打包静态页面">hugo打包静态页面</a></li>
-    <li><a href="#git相关命令">git相关命令</a></li>
-    <li><a href="#git-解除ssl验证">git 解除SSL验证</a></li>
-    <li><a href="#git访问过慢">git访问过慢</a></li>
-    <li><a href="#ssh-key设置">SSH key设置</a></li>
+    <li><a href="#go开发环境配置">Go开发环境配置</a>
+      <ul>
+        <li><a href="#编译方法">编译方法</a></li>
+        <li><a href="#格式化">格式化</a></li>
+        <li><a href="#go-项目目录">go 项目目录</a></li>
+      </ul>
+    </li>
+    <li><a href="#gin框架安装">Gin框架安装</a>
+      <ul>
+        <li>
+          <ul>
+            <li><a href="#问题1gin安装不了">问题1：gin安装不了</a></li>
+            <li><a href="#问题2无法导包">问题2：无法导包</a></li>
+            <li><a href="#问题3更新依赖">问题3：更新依赖</a></li>
+          </ul>
+        </li>
+      </ul>
+    </li>
   </ul>
 </nav>
   </div>
 </div>
     <div class="post-content">
-      <h1 id="hugo打包静态页面">hugo打包静态页面</h1>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ hugo
-</code></pre></td></tr></table>
-</div>
-</div><p>生成<code>public/</code>在项目文件夹内</p>
-<h1 id="git相关命令">git相关命令</h1>
+      <h1 id="go开发环境配置">Go开发环境配置</h1>
+<p>SDK: Software Development Kit  软件开发工具包</p>
+<p>环境变量配置：</p>
+<ol>
+<li>GOROOT ，go安装路径</li>
+<li>Path ，bin路径</li>
+<li>GOPATH ，项目路径</li>
+</ol>
+<h2 id="编译方法">编译方法</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -176,30 +187,35 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ cd public
-$ git init
-$ git remote add origin https://github.com/luchuancy/luchuancy.github.io.git
-$ git status //查看本地自己修改了多少文件
-$ git add .   //添加远程不存在的git文件
-$ git commit -m &#34;commit 211109&#34;   //提交修改
-$ git push -u origin master    //更新到远程服务器上
-							//本地的master分支推送到origin主机，同时指定origin为默认主机，后面就可以不加任何参数使用git push了。
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">// docs命令
+$ go build proj01.go
+$ go build -o tt.exe proj01.go   //指定文件名
+$ go build 路径   //其他路径下编译  src后面的路径
+$ proj01.exe
+// or...
+$ go run proj01.go
+$ go install //编译并将.exe放到bin路径下
 </code></pre></td></tr></table>
 </div>
-</div><h1 id="git-解除ssl验证">git 解除SSL验证</h1>
+</div><h2 id="格式化">格式化</h2>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ git config --global http.sslVerify &#34;false&#34;
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">// 格式化
+$ gofmt -w proj01.go
 </code></pre></td></tr></table>
 </div>
-</div><h1 id="git访问过慢">git访问过慢</h1>
-<ol>
-<li>解析git ip地址
-通过 <a href="https://www.ipaddress.com/">https://www.ipaddress.com/</a> 获取 github.com 和 github.global.ssl.fastly.net 的ip地址，得到ip地址</li>
-</ol>
+</div><h2 id="go-项目目录">go 项目目录</h2>
+<ul>
+<li>src 原代码</li>
+<li>bin 编译后的</li>
+<li>pkg 依赖</li>
+</ul>
+<h1 id="gin框架安装">Gin框架安装</h1>
+<h3 id="问题1gin安装不了">问题1：gin安装不了</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
@@ -207,64 +223,35 @@ $ git push -u origin master    //更新到远程服务器上
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">// github的ip地址
-github.com ...
-github.global.ssl.fastly.net ...
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ go env -w GO111MODULE=on
+$ go env -w GOPROXY=https://goproxy.io,direct
+设置后，重新运行 go get -u github.com/gin-gonic/gin 可以解决
 </code></pre></td></tr></table>
 </div>
-</div><ol start="2">
-<li>
-<p>添加到hosts文件</p>
-<p>打开文件：C:/windows/system32/drivers/etc/hosts，需要把上面获取的两个ip地址添加到系统hosts文件的末尾。</p>
-</li>
-<li>
-<p>终端运行</p>
-</li>
-</ol>
+</div><p>上面运行后，再运行  go run .\main.go，就可行了</p>
+<h3 id="问题2无法导包">问题2：无法导包</h3>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ ipconfig /flushdns
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ go mod init gin
+$ go mod edit -require github.com/gin-gonic/gin@latest
+$ go mod download
 </code></pre></td></tr></table>
 </div>
-</div><h1 id="ssh-key设置">SSH key设置</h1>
-<ul>
-<li>配置用户名和邮箱</li>
-</ul>
+</div><h3 id="问题3更新依赖">问题3：更新依赖</h3>
+<p>go: updates to go.mod needed; to update it: go mod tidy</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ git config --global user.name &#34;用户名&#34;
-$ git config --global user.email  &#34;邮箱&#34;
-</code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>生成SSH密钥</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span><span class="lnt">2
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ ssh-keygen -t rsa -C &#34;邮箱&#34;
-$ cat id_rsa.pub  // 文件内容即SSH密钥
-</code></pre></td></tr></table>
-</div>
-</div><ul>
-<li>github设置密钥</li>
-</ul>
-<div class="highlight"><div class="chroma">
-<table class="lntable"><tr><td class="lntd">
-<pre tabindex="0" class="chroma"><code><span class="lnt">1
-</span></code></pre></td>
-<td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ ssh -T git@github.com // 检查密钥是否设置成功
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ go mod tidy
+// 如果已经设置了gomod环境，只需要更新mod依赖的modules
 </code></pre></td></tr></table>
 </div>
 </div>
@@ -278,7 +265,7 @@ $ cat id_rsa.pub  // 文件内容即SSH密钥
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2021-11-09
+        2021-10-20
         
     </span>
   </p>
@@ -288,13 +275,13 @@ $ cat id_rsa.pub  // 文件内容即SSH密钥
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/go-vscode/">
+        <a class="prev" href="/post/gostu_dlists/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">在VSCode中搭建go环境</span>
+            <span class="prev-text nav-default">Golang单链表 | 数组转化单链表</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
-        <a class="next" href="/post/gostu_copy/">
-            <span class="next-text nav-default">Golang切片 | copy</span>
+        <a class="next" href="/post/gostu_array/">
+            <span class="next-text nav-default">Golang数组 | 二维数组初始化、切片</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>
