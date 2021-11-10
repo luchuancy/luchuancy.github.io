@@ -16,7 +16,7 @@
 <meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
 
 
-<meta name="author" content="Cyul_Life" /><meta name="description" content="数据类型 稀疏数组 | Sparseaarray 只记录有效数据" />
+<meta name="author" content="Cyul_Life" /><meta name="description" content="数据类型 稀疏数组 | Sparsearray 只记录有效数据 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 type ValNode struct { row int col int val int } func main() { // 1. 创建原始数据 var chessMap [11][11]int chessMap[1][2] = 1 // 黑子 chessMap[2][3] = 2 //" />
 
 
 
@@ -40,19 +40,19 @@
 
 
 <meta property="og:title" content="Golang | 数据结构" />
-<meta property="og:description" content="数据类型 稀疏数组 | Sparseaarray 只记录有效数据" />
+<meta property="og:description" content="数据类型 稀疏数组 | Sparsearray 只记录有效数据 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 type ValNode struct { row int col int val int } func main() { // 1. 创建原始数据 var chessMap [11][11]int chessMap[1][2] = 1 // 黑子 chessMap[2][3] = 2 //" />
 <meta property="og:type" content="article" />
 <meta property="og:url" content="http://luchuancy.github.io/post/go-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/" /><meta property="article:section" content="post" />
 <meta property="article:published_time" content="2021-11-08T21:01:48+08:00" />
-<meta property="article:modified_time" content="2021-11-08T21:01:48+08:00" />
+<meta property="article:modified_time" content="2021-11-10T15:40:23+08:00" />
 
 <meta itemprop="name" content="Golang | 数据结构">
-<meta itemprop="description" content="数据类型 稀疏数组 | Sparseaarray 只记录有效数据"><meta itemprop="datePublished" content="2021-11-08T21:01:48+08:00" />
-<meta itemprop="dateModified" content="2021-11-08T21:01:48+08:00" />
-<meta itemprop="wordCount" content="17">
+<meta itemprop="description" content="数据类型 稀疏数组 | Sparsearray 只记录有效数据 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 type ValNode struct { row int col int val int } func main() { // 1. 创建原始数据 var chessMap [11][11]int chessMap[1][2] = 1 // 黑子 chessMap[2][3] = 2 //"><meta itemprop="datePublished" content="2021-11-08T21:01:48+08:00" />
+<meta itemprop="dateModified" content="2021-11-10T15:40:23+08:00" />
+<meta itemprop="wordCount" content="436">
 <meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
 <meta name="twitter:title" content="Golang | 数据结构"/>
-<meta name="twitter:description" content="数据类型 稀疏数组 | Sparseaarray 只记录有效数据"/>
+<meta name="twitter:description" content="数据类型 稀疏数组 | Sparsearray 只记录有效数据 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 type ValNode struct { row int col int val int } func main() { // 1. 创建原始数据 var chessMap [11][11]int chessMap[1][2] = 1 // 黑子 chessMap[2][3] = 2 //"/>
 
 <!--[if lte IE 9]>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
@@ -145,7 +145,8 @@
   <ul>
     <li><a href="#数据类型">数据类型</a>
       <ul>
-        <li><a href="#稀疏数组--sparseaarray">稀疏数组 | Sparseaarray</a></li>
+        <li><a href="#稀疏数组--sparsearray">稀疏数组 | Sparsearray</a></li>
+        <li><a href="#队列--queue">队列 | queue</a></li>
       </ul>
     </li>
   </ul>
@@ -154,8 +155,155 @@
 </div>
     <div class="post-content">
       <h1 id="数据类型">数据类型</h1>
-<h2 id="稀疏数组--sparseaarray">稀疏数组 | Sparseaarray</h2>
+<h2 id="稀疏数组--sparsearray">稀疏数组 | Sparsearray</h2>
 <p>只记录有效数据</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang"><span class="kd">type</span> <span class="nx">ValNode</span> <span class="kd">struct</span> <span class="p">{</span>
+	<span class="nx">row</span> <span class="kt">int</span>
+	<span class="nx">col</span> <span class="kt">int</span>
+	<span class="nx">val</span> <span class="kt">int</span>
+<span class="p">}</span>
+
+<span class="kd">func</span> <span class="nf">main</span><span class="p">()</span> <span class="p">{</span>
+	<span class="c1">// 1. 创建原始数据
+</span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">chessMap</span> <span class="p">[</span><span class="mi">11</span><span class="p">][</span><span class="mi">11</span><span class="p">]</span><span class="kt">int</span>
+	<span class="nx">chessMap</span><span class="p">[</span><span class="mi">1</span><span class="p">][</span><span class="mi">2</span><span class="p">]</span> <span class="p">=</span> <span class="mi">1</span> <span class="c1">// 黑子
+</span><span class="c1"></span>	<span class="nx">chessMap</span><span class="p">[</span><span class="mi">2</span><span class="p">][</span><span class="mi">3</span><span class="p">]</span> <span class="p">=</span> <span class="mi">2</span> <span class="c1">// 白子
+</span><span class="c1"></span>	<span class="c1">// 2. 输出原始数据
+</span><span class="c1"></span>	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">chessMap</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v2</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">v</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%d\t&#34;</span><span class="p">,</span> <span class="nx">v2</span><span class="p">)</span>
+		<span class="p">}</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">()</span>
+	<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang">	<span class="c1">// 3. 转成稀疏数组
+</span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">sparseArr</span> <span class="p">[]</span><span class="nx">ValNode</span>
+	<span class="c1">// 标准的稀疏数组 记录元素的二维数组规模 行列及默认值
+</span><span class="c1"></span>	<span class="nx">valNode</span> <span class="o">:=</span> <span class="nx">ValNode</span><span class="p">{</span>
+		<span class="nx">row</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+		<span class="nx">col</span><span class="p">:</span> <span class="mi">11</span><span class="p">,</span>
+		<span class="nx">val</span><span class="p">:</span> <span class="mi">0</span><span class="p">,</span>
+	<span class="p">}</span>
+	<span class="nx">sparseArr</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">sparseArr</span><span class="p">,</span> <span class="nx">valNode</span><span class="p">)</span>
+
+	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">chessMap</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="nx">j</span><span class="p">,</span> <span class="nx">v2</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">v</span> <span class="p">{</span>
+			<span class="k">if</span> <span class="nx">v2</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span>
+				<span class="c1">// 创建一个val值结点
+</span><span class="c1"></span>				<span class="nx">valNode</span> <span class="o">:=</span> <span class="nx">ValNode</span><span class="p">{</span>
+					<span class="nx">row</span><span class="p">:</span> <span class="nx">i</span><span class="p">,</span>
+					<span class="nx">col</span><span class="p">:</span> <span class="nx">j</span><span class="p">,</span>
+					<span class="nx">val</span><span class="p">:</span> <span class="nx">v2</span><span class="p">,</span>
+				<span class="p">}</span>
+				<span class="nx">sparseArr</span> <span class="p">=</span> <span class="nb">append</span><span class="p">(</span><span class="nx">sparseArr</span><span class="p">,</span> <span class="nx">valNode</span><span class="p">)</span>
+			<span class="p">}</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="c1">// 输出稀疏数组
+</span><span class="c1"></span>	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;稀疏数组为：&#34;</span><span class="p">,</span> <span class="nx">sparseArr</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">valNode</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">sparseArr</span> <span class="p">{</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%d: %d %d %d\n&#34;</span><span class="p">,</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">valNode</span><span class="p">.</span><span class="nx">row</span><span class="p">,</span> <span class="nx">valNode</span><span class="p">.</span><span class="nx">col</span><span class="p">,</span> <span class="nx">valNode</span><span class="p">.</span><span class="nx">val</span><span class="p">)</span>
+	<span class="p">}</span>
+	<span class="c1">// 将稀疏数组存盘
+</span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-golang" data-lang="golang">	<span class="c1">// 恢复原始数组
+</span><span class="c1"></span>	<span class="c1">// 打开存盘文件，恢复数组
+</span><span class="c1"></span>	<span class="c1">// 直接使用稀疏数组恢复原始数组
+</span><span class="c1"></span>	<span class="kd">var</span> <span class="nx">chessMap2</span> <span class="p">[</span><span class="mi">11</span><span class="p">][</span><span class="mi">11</span><span class="p">]</span><span class="kt">int</span>
+	<span class="c1">// 遍历sparseArr
+</span><span class="c1"></span>	<span class="k">for</span> <span class="nx">i</span><span class="p">,</span> <span class="nx">valNode</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">sparseArr</span> <span class="p">{</span>
+		<span class="k">if</span> <span class="nx">i</span> <span class="o">!=</span> <span class="mi">0</span> <span class="p">{</span> <span class="c1">// 跳过第一行记录的数据
+</span><span class="c1"></span>			<span class="nx">chessMap2</span><span class="p">[</span><span class="nx">valNode</span><span class="p">.</span><span class="nx">row</span><span class="p">][</span><span class="nx">valNode</span><span class="p">.</span><span class="nx">col</span><span class="p">]</span> <span class="p">=</span> <span class="nx">valNode</span><span class="p">.</span><span class="nx">val</span>
+		<span class="p">}</span>
+	<span class="p">}</span>
+	<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">(</span><span class="s">&#34;恢复后的原始数据：&#34;</span><span class="p">,</span> <span class="nx">chessMap2</span><span class="p">)</span>
+	<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">chessMap2</span> <span class="p">{</span>
+		<span class="k">for</span> <span class="nx">_</span><span class="p">,</span> <span class="nx">v2</span> <span class="o">:=</span> <span class="k">range</span> <span class="nx">v</span> <span class="p">{</span>
+			<span class="nx">fmt</span><span class="p">.</span><span class="nf">Printf</span><span class="p">(</span><span class="s">&#34;%d\t&#34;</span><span class="p">,</span> <span class="nx">v2</span><span class="p">)</span>
+		<span class="p">}</span>
+		<span class="nx">fmt</span><span class="p">.</span><span class="nf">Println</span><span class="p">()</span>
+	<span class="p">}</span>
+</code></pre></td></tr></table>
+</div>
+</div><h2 id="队列--queue">队列 | queue</h2>
 
     </div>
 
@@ -167,7 +315,7 @@
   <p class="copyright-item">
     <span class="item-title">LastMod</span>
     <span class="item-content">
-        2021-11-08
+        2021-11-10
         
     </span>
   </p>
@@ -177,13 +325,9 @@
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/git%E9%83%A8%E7%BD%B2-%E5%89%AF%E6%9C%AC/">
-            <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">🐖</span>
-            <span class="prev-text nav-mobile">Prev</span>
-          </a>
-        <a class="next" href="/post/gostu_copy/">
-            <span class="next-text nav-default">Golang切片 | copy</span>
+        
+        <a class="next" href="/post/go-vscode/">
+            <span class="next-text nav-default">在VSCode中搭建go环境</span>
             <span class="next-text nav-mobile">Next</span>
             <i class="iconfont icon-right"></i>
           </a>

@@ -6,7 +6,16 @@
     <description>Recent content on Cyul_Life | BLOG</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>en</language>
-    <lastBuildDate>Tue, 09 Nov 2021 16:20:48 +0800</lastBuildDate><atom:link href="http://luchuancy.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Wed, 10 Nov 2021 11:16:48 +0800</lastBuildDate><atom:link href="http://luchuancy.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Golang | 数据结构</title>
+      <link>http://luchuancy.github.io/post/go-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
+      <pubDate>Mon, 08 Nov 2021 21:01:48 +0800</pubDate>
+      
+      <guid>http://luchuancy.github.io/post/go-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
+      <description>数据类型 稀疏数组 | Sparsearray 只记录有效数据 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 type ValNode struct { row int col int val int } func main() { // 1. 创建原始数据 var chessMap [11][11]int chessMap[1][2] = 1 // 黑子 chessMap[2][3] = 2 //</description>
+    </item>
+    
     <item>
       <title>About</title>
       <link>http://luchuancy.github.io/about/</link>
@@ -19,30 +28,21 @@ It makes use of a variety of open source projects including:
     </item>
     
     <item>
+      <title>在VSCode中搭建go环境</title>
+      <link>http://luchuancy.github.io/post/go-vscode/</link>
+      <pubDate>Wed, 10 Nov 2021 11:16:48 +0800</pubDate>
+      
+      <guid>http://luchuancy.github.io/post/go-vscode/</guid>
+      <description>配置GOPATH环境变量 1 $ go env -w GOPATH=我们自己的工作区路径 先打开Gomod，再配置七牛云代理 1 2 $ go env -w GO111MODULE=on $ go env -w GOPROXY=https://goproxy.cn,direct Go Module</description>
+    </item>
+    
+    <item>
       <title>hugo_github | 命令</title>
       <link>http://luchuancy.github.io/post/git%E9%83%A8%E7%BD%B2/</link>
       <pubDate>Tue, 09 Nov 2021 16:20:48 +0800</pubDate>
       
       <guid>http://luchuancy.github.io/post/git%E9%83%A8%E7%BD%B2/</guid>
-      <description>hugo打包静态页面 1 $ hugo 生成public/在项目文件夹内 git相关命令 1 2 3 4 5 6 7 $ cd public $ git init $ git remote add origin https://github.com/luchuancy/luchuancy.github.io.git $ git status //查看本地自己修改了多</description>
-    </item>
-    
-    <item>
-      <title>🐖</title>
-      <link>http://luchuancy.github.io/post/git%E9%83%A8%E7%BD%B2-%E5%89%AF%E6%9C%AC/</link>
-      <pubDate>Tue, 09 Nov 2021 16:20:48 +0800</pubDate>
-      
-      <guid>http://luchuancy.github.io/post/git%E9%83%A8%E7%BD%B2-%E5%89%AF%E6%9C%AC/</guid>
-      <description>臭宝在看吗？？？？</description>
-    </item>
-    
-    <item>
-      <title>Golang | 数据结构</title>
-      <link>http://luchuancy.github.io/post/go-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</link>
-      <pubDate>Mon, 08 Nov 2021 21:01:48 +0800</pubDate>
-      
-      <guid>http://luchuancy.github.io/post/go-%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/</guid>
-      <description>数据类型 稀疏数组 | Sparseaarray 只记录有效数据</description>
+      <description>hugo打包静态页面 1 $ hugo 生成public/在项目文件夹内 git相关命令 1 2 3 4 5 6 7 8 $ cd public $ git init $ git remote add origin https://github.com/luchuancy/luchuancy.github.io.git $ git status //查看本地自己修改了</description>
     </item>
     
     <item>
@@ -79,75 +79,6 @@ It makes use of a variety of open source projects including:
       
       <guid>http://luchuancy.github.io/post/gostu_array/</guid>
       <description>golang二维数组初始化、切片 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 package main import &amp;#34;fmt&amp;#34; func main() { n := 4 matrix := make([][]int, n) for i, _ := range matrix { matrix[i] = make([]int, n) } matrixSlice := matrix[0:2] fmt.Pr</description>
-    </item>
-    
-    <item>
-      <title>Theme preview</title>
-      <link>http://luchuancy.github.io/post/even-preview/</link>
-      <pubDate>Tue, 10 Jul 2018 00:00:00 +0800</pubDate>
-      
-      <guid>http://luchuancy.github.io/post/even-preview/</guid>
-      <description>Based on MarkdownPreview test.md. 1 2 3 4 5 置顶文章 weight: 10 contentCopyright: MIT mathjax: true autoCollapseToc: true Markdown 1 2 3 4 5 6 7 8 # H1 ## H2 ### H3 #### H4 ##### H5 ###### H6 ### Duplicate Header ### Duplicate Header H1 H2 H3 H4 H5 H6 Duplicate Header Duplicate Header Paragraphs 1 2 3 4 This is a paragraph. I am still</description>
-    </item>
-    
-    <item>
-      <title>This is a hidden post.</title>
-      <link>http://luchuancy.github.io/post/hidden-post/</link>
-      <pubDate>Thu, 08 Mar 2018 17:40:19 +0800</pubDate>
-      
-      <guid>http://luchuancy.github.io/post/hidden-post/</guid>
-      <description>&lt;p&gt;This post is hidden from the home page.&lt;/p&gt;</description>
-    </item>
-    
-    <item>
-      <title>Shortcodes</title>
-      <link>http://luchuancy.github.io/post/shortcodes/</link>
-      <pubDate>Tue, 30 Aug 2016 16:01:23 +0800</pubDate>
-      
-      <guid>http://luchuancy.github.io/post/shortcodes/</guid>
-      <description>&lt;h1 id=&#34;admonition&#34;&gt;Admonition&lt;/h1&gt;
-&lt;div class=&#34;admonition note&#34;&gt;&lt;p class=&#34;admonition-title&#34;&gt;I&amp;#39;m title!&lt;/p&gt;
-&lt;p&gt;biu biu biu.&lt;/p&gt;
-&lt;details class=&#34;admonition note&#34;&gt;&lt;summary class=&#34;admonition-title&#34;&gt;note&lt;/summary&gt;
-  &lt;p&gt;biu biu biu.&lt;/p&gt;
-&lt;/details&gt;
-&lt;div class=&#34;admonition example&#34;&gt;
-  &lt;p&gt;Without title.&lt;/p&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&#34;admonition note&#34;&gt;&lt;p class=&#34;admonition-title&#34;&gt;I&amp;#39;m title!&lt;/p&gt;
-&lt;/div&gt;
-&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
-&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
-&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
-&lt;td class=&#34;lntd&#34;&gt;
-&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;{{% admonition note &amp;#34;I&amp;#39;m title!&amp;#34; false %}}
-biu biu biu.
-
-{{% admonition type=&amp;#34;note&amp;#34; title=&amp;#34;note&amp;#34; details=&amp;#34;true&amp;#34; %}}
-biu biu biu.
-{{% /admonition %}}
-
-{{% admonition example %}}
-Without title.
-{{% /admonition %}}
-
-{{% /admonition %}}
-&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;/div&gt;</description>
     </item>
     
   </channel>
