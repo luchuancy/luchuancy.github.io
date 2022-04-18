@@ -1,0 +1,3194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Hadoop | 初识 - Cyul_Life | BLOG</title>
+  <meta name="renderer" content="webkit" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+<meta name="author" content="Cyul_Life" /><meta name="description" content="Hadoop 第一章 大数据的概述 1.1 大数据的概念 最近几年，IT行业最火的名词中，少不了&amp;quot;大数据&amp;quot;、&amp;ldquo;人工智能&amp;rdquo;" />
+
+
+
+
+
+
+<meta name="generator" content="Hugo 0.97.2 with theme even" />
+
+
+<link rel="canonical" href="http://luchuancy.github.io/post/hadoop/" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+<link rel="manifest" href="/manifest.json">
+<link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5">
+
+
+
+<link href="/sass/main.min.b5a744db6de49a86cadafb3b70f555ab443f83c307a483402259e94726b045ff.css" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.css" integrity="sha256-7TyXnr2YU040zfSP+rEcz29ggW4j56/ujTPwjMzyqFY=" crossorigin="anonymous">
+
+
+<meta property="og:title" content="Hadoop | 初识" />
+<meta property="og:description" content="Hadoop 第一章 大数据的概述 1.1 大数据的概念 最近几年，IT行业最火的名词中，少不了&quot;大数据&quot;、&ldquo;人工智能&rdquo;" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="http://luchuancy.github.io/post/hadoop/" /><meta property="article:section" content="post" />
+<meta property="article:published_time" content="2022-04-01T15:55:48+08:00" />
+<meta property="article:modified_time" content="2022-04-01T15:55:48+08:00" />
+
+<meta itemprop="name" content="Hadoop | 初识">
+<meta itemprop="description" content="Hadoop 第一章 大数据的概述 1.1 大数据的概念 最近几年，IT行业最火的名词中，少不了&quot;大数据&quot;、&ldquo;人工智能&rdquo;"><meta itemprop="datePublished" content="2022-04-01T15:55:48+08:00" />
+<meta itemprop="dateModified" content="2022-04-01T15:55:48+08:00" />
+<meta itemprop="wordCount" content="22773">
+<meta itemprop="keywords" content="" /><meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Hadoop | 初识"/>
+<meta name="twitter:description" content="Hadoop 第一章 大数据的概述 1.1 大数据的概念 最近几年，IT行业最火的名词中，少不了&quot;大数据&quot;、&ldquo;人工智能&rdquo;"/>
+
+<!--[if lte IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.1.20170427/classList.min.js"></script>
+<![endif]-->
+
+<!--[if lt IE 9]>
+  <script src="https://cdn.jsdelivr.net/npm/html5shiv@3.7.3/dist/html5shiv.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/respond.js@1.4.2/dest/respond.min.js"></script>
+<![endif]-->
+
+</head>
+<body>
+  <div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/" class="logo">Cyul</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    <a href="/">
+        <li class="mobile-menu-item">Home</li>
+      </a><a href="/post/">
+        <li class="mobile-menu-item">Archives</li>
+      </a><a href="/tags/">
+        <li class="mobile-menu-item">Tags</li>
+      </a><a href="/categories/">
+        <li class="mobile-menu-item">Categories</li>
+      </a><a href="/about/">
+        <li class="mobile-menu-item">About</li>
+      </a>
+  </ul>
+
+  
+
+
+</nav>
+
+  <div class="container" id="mobile-panel">
+    <header id="header" class="header">
+        <div class="logo-wrapper">
+  <a href="/" class="logo">Cyul</a>
+</div>
+
+
+
+
+
+<nav class="site-navbar">
+  <ul id="menu" class="menu">
+    <li class="menu-item">
+        <a class="menu-item-link" href="/">Home</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/post/">Archives</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/tags/">Tags</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/categories/">Categories</a>
+      </li><li class="menu-item">
+        <a class="menu-item-link" href="/about/">About</a>
+      </li>
+  </ul>
+</nav>
+
+    </header>
+
+    <main id="main" class="main">
+      <div class="content-wrapper">
+        <div id="content" class="content">
+          <article class="post">
+    
+    <header class="post-header">
+      <h1 class="post-title">Hadoop | 初识</h1>
+
+      <div class="post-meta">
+        <span class="post-time"> 2022-04-01 </span>
+        
+        
+      </div>
+    </header>
+
+    <div class="post-toc" id="post-toc">
+  <h2 class="post-toc-title">Contents</h2>
+  <div class="post-toc-content always-active">
+    <nav id="TableOfContents">
+  <ul>
+    <li><a href="#hadoop">Hadoop</a>
+      <ul>
+        <li><a href="#第一章-大数据的概述">第一章 大数据的概述</a>
+          <ul>
+            <li><a href="#11-大数据的概念">1.1 大数据的概念</a></li>
+            <li><a href="#12-大数据的特征">1.2 大数据的特征</a></li>
+            <li><a href="#13-大数据的应用场景">1.3 大数据的应用场景</a></li>
+            <li><a href="#14-大数据的发展前景">1.4 大数据的发展前景</a></li>
+          </ul>
+        </li>
+        <li><a href="#第二章-hadoop概述">第二章 Hadoop概述</a>
+          <ul>
+            <li><a href="#21-为什么要用hadoop">2.1 为什么要用hadoop</a></li>
+            <li><a href="#22-hadoop的简要介绍">2.2 Hadoop的简要介绍</a></li>
+            <li><a href="#23-谷歌的三篇论文">2.3 谷歌的三篇论文</a></li>
+            <li><a href="#24-hadoop的发展历史">2.4 Hadoop的发展历史</a></li>
+            <li><a href="#25-hadoop的组成部分">2.5 Hadoop的组成部分</a></li>
+            <li><a href="#26-hadoop的生态系统">2.6. Hadoop的生态系统</a></li>
+          </ul>
+        </li>
+        <li><a href="#第三章-hadoop集群安装">第三章 Hadoop集群安装</a>
+          <ul>
+            <li><a href="#31-集群规划">3.1 集群规划</a></li>
+            <li><a href="#32-安装jdk">3.2 安装JDK</a></li>
+            <li><a href="#33-完全分布式环境需求及安装--e">3.3. 完全分布式环境需求及安装  ==e</a></li>
+            <li><a href="#34-hadoop的配置文件">3.4. Hadoop的配置文件</a></li>
+            <li><a href="#35-格式化与启动">3.5 格式化与启动</a></li>
+          </ul>
+        </li>
+        <li><a href="#第四章-hdfs的shell命令">第四章 HDFS的Shell命令</a>
+          <ul>
+            <li><a href="#41-创建目录">4.1 创建目录</a></li>
+            <li><a href="#42-上传指令">4.2 上传指令</a></li>
+            <li><a href="#43-创建空文件">4.3 创建空文件</a></li>
+            <li><a href="#44-向分布式文件系统中的文件里追加内容">4.4 向分布式文件系统中的文件里追加内容</a></li>
+            <li><a href="#45-查看指令">4.5 查看指令</a></li>
+            <li><a href="#46-下载指令">4.6 下载指令</a></li>
+            <li><a href="#47-合并下载">4.7 合并下载</a></li>
+            <li><a href="#48--移动hdfs中的文件更名">4.8  移动hdfs中的文件（更名）</a></li>
+            <li><a href="#49-复制hdfs中的文件到hdfs的另一个目录">4.9 复制hdfs中的文件到hdfs的另一个目录</a></li>
+            <li><a href="#410-删除命令">4.10 删除命令</a></li>
+            <li><a href="#411-查看磁盘利用率和文件大小">4.11 查看磁盘利用率和文件大小</a></li>
+            <li><a href="#412-修改权限的">4.12 修改权限的</a></li>
+            <li><a href="#413-修改文件的副本数">4.13 修改文件的副本数</a></li>
+            <li><a href="#414-查看文件的状态">4.14 查看文件的状态</a></li>
+            <li><a href="#415-测试">4.15 测试</a></li>
+          </ul>
+        </li>
+        <li><a href="#第五章-hdfs的块的概念">第五章 HDFS的块的概念</a>
+          <ul>
+            <li><a href="#51-传统型分布式文件系统的缺点">5.1 传统型分布式文件系统的缺点</a></li>
+            <li><a href="#52-hdfs的块">5.2 HDFS的块</a></li>
+            <li><a href="#53-hdfs的块大小">5.3 HDFS的块大小</a></li>
+            <li><a href="#54-块的相关参数设置">5.4 块的相关参数设置</a></li>
+            <li><a href="#55-块的存储位置">5.5 块的存储位置</a></li>
+            <li><a href="#56-hdfs的优点">5.6 HDFS的优点</a></li>
+            <li><a href="#57-hdfs的缺点">5.7 HDFS的缺点</a></li>
+          </ul>
+        </li>
+        <li><a href="#第六章-hdfs的体系结构">第六章 HDFS的体系结构</a>
+          <ul>
+            <li><a href="#61-体系结构解析">6.1 体系结构解析</a></li>
+            <li><a href="#62-开机启动hdfs的过程">6.2 开机启动HDFS的过程</a></li>
+            <li><a href="#63-secondarynamenode的工作机制">6.3 SecondaryNameNode的工作机制</a></li>
+          </ul>
+        </li>
+        <li><a href="#第七章-hdfs的读写流程">第七章 HDFS的读写流程</a>
+          <ul>
+            <li><a href="#71-读流程详解">7.1 读流程详解</a></li>
+            <li><a href="#72-写流程的详解">7.2 写流程的详解</a></li>
+          </ul>
+        </li>
+        <li><a href="#第八章-zookeeper的概述">第八章 Zookeeper的概述</a>
+          <ul>
+            <li><a href="#81-zookeeper是什么">8.1 Zookeeper是什么</a></li>
+            <li><a href="#82-zookeeper的特点">8.2 Zookeeper的特点</a></li>
+            <li><a href="#83-zookeeper的数据模型">8.3 Zookeeper的数据模型</a></li>
+            <li><a href="#84-zookeeper的应用场景">8.4 Zookeeper的应用场景</a></li>
+          </ul>
+        </li>
+        <li><a href="#第九章-zookeeper的安装">第九章 Zookeeper的安装</a>
+          <ul>
+            <li><a href="#91-安装与环境变量的配置">9.1. 安装与环境变量的配置</a></li>
+            <li><a href="#92-集群模式的配置">9.2. 集群模式的配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#第十章-zookeeper的shell操作">第十章 Zookeeper的Shell操作</a></li>
+        <li><a href="#第十一章-yarn的概述">第十一章 YARN的概述</a></li>
+        <li><a href="#第十二章-yarn的架构及组件">第十二章 YARN的架构及组件</a>
+          <ul>
+            <li><a href="#121-mapreduce-1x的简介">12.1. MapReduce 1.x的简介</a></li>
+            <li><a href="#122-yarn的设计思想">12.2. YARN的设计思想</a></li>
+            <li><a href="#123-yarn的配置">12.3. YARN的配置</a></li>
+          </ul>
+        </li>
+        <li><a href="#第十三章-yarn的执行原理">第十三章 YARN的执行原理</a></li>
+        <li><a href="#第十四章-yarn的案例测试">第十四章 YARN的案例测试</a></li>
+        <li><a href="#第十五章-yarn的web-ui查看">第十五章 YARN的Web UI查看</a></li>
+      </ul>
+    </li>
+  </ul>
+</nav>
+  </div>
+</div>
+    <div class="post-content">
+      <h1 id="hadoop">Hadoop</h1>
+<h2 id="第一章-大数据的概述">第一章 大数据的概述</h2>
+<h3 id="11-大数据的概念">1.1 大数据的概念</h3>
+<p>最近几年，IT行业最火的名词中，少不了&quot;大数据&quot;、&ldquo;人工智能&rdquo;、&ldquo;云计算&rdquo;、&ldquo;物联网&rdquo;、&ldquo;区块链&quot;等等这些名词。针对于**&ldquo;大数据&rdquo;**这个名词，现在更是全国老百姓，老少皆知的一个词语。但是什么是大数据，除了IT行业的专业人士外，其他人乃至其他行业的人，除了能说出&quot;数据量大&quot;之外，好像真的不能再更深层次的解释了。那么我们来看看下面几个权威机构给出的解释。</p>
+<p>**维基百科 **给出的定义：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">数据规模巨大到无法通过人工在合理的时间内达到截取，管理，处理并整理成为人类所解读的信息。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**麦肯锡全球研究所 **给出的定义：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">一种规模大到在获取、存储、管理、分析方面都大大超出了传统数据库软件工具能力范围的数据集合。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**研究机构 **高德纳(Gartner)给出的定义：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">&#34;大数据&#34;是需要新的处理模式才能具有更强的决策力、洞察发现力和流程优化能力来适应海量、高增长率和多样化的信息资产
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>概念总结：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">海量数据，具有高增长率、数据类型多样化、一定时间内无法使用常规软件工具进行捕捉、管理和处理的数据集合。 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="12-大数据的特征">1.2 大数据的特征</h3>
+<p>早在1980年，著名未来学家托夫勒在其所著的《第三次浪潮》中就热情地将“大数据”称颂为“第三次浪潮的华彩乐章”。《自然》杂志在2008年9月推出了名为“大数据”的封面专栏。从2009年开始“大数据”才成为互联网技术行业中的热门词汇。最早应用“大数据”的是世界著名的管理咨询公司麦肯锡公司，它看到了各种网络平台记录的个人海量信息具备潜在的商业价值，于是投入大量人力物力进行调研， 对“大数据”进行收集和分析的设想，在2011年6月发布了关于“大数据”的报告，该报告对“大数据”的影响、关键技术和应用领域等都进行了详尽的分析。麦肯锡的报告得到了金融界的高度重视，而后逐渐受到了各行各业关注。 那么大数据到底有什么特征呢？我们怎么去理解大数据呢？有专业人士总结了4V说法，也有相关机构总结了5V说法，甚至6V说法。不管哪种说法，下面四个特征，是大家普遍认可的。</p>
+<ul>
+<li><strong>Volume</strong> : 巨大的数据量</li>
+<li><strong>Variety</strong> : 数据类型多样化
+<ul>
+<li>结构化的数据 : 即具有固定格式和有限长度的数据</li>
+<li>半结构化的数据 : 是一些xml或者html格式的数据</li>
+<li>非结构化的数据 : 现在非结构化的数据越来越多，就是不定长、无固定格式的数据，例如网页、语音、视频等</li>
+</ul>
+</li>
+<li><strong>Velocity</strong> : 数据增长速度快</li>
+<li><strong>Value</strong> : 价值密度低，商业价值高</li>
+</ul>
+<h3 id="13-大数据的应用场景">1.3 大数据的应用场景</h3>
+<p>有不了解大数据的人会问：**大数据能做啥？**问的好。</p>
+<p>大数据本身是一个抽象的概念， 对当前无论是企业还是政府、或是高校等单位来说，是一个面临着数据无法存储、无法计算的状态的形容词。</p>
+<p>那么大数据可以做什么呢？</p>
+<p>在海量的各种各样类型的价值密度低的数据中，我们要进行的是:数据采集，数据存储，数据清洗，数据分析，数据可视化。</p>
+<p>简单一句话，就是大数据让数据产生各种&quot;价值&rdquo;。可以说，大数据的核心作用就是&quot;数据价值化&quot;，这个过程就是大数据要做的主要事情。那么就可以概括成：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">- 记录已经发生的一切
+</span></span><span class="line"><span class="cl">- 描述正在发生的一切
+</span></span><span class="line"><span class="cl">- 预测将要发生的一切
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>大数据技术的战略意义不在于掌握庞大的数据信息，而在于<strong>对这些含有意义的数据进行专业化处理</strong>。</p>
+<p>现在已经应用&quot;大数据&quot;的案例有：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">- 预测犯罪
+</span></span><span class="line"><span class="cl">- 预测流感的爆发
+</span></span><span class="line"><span class="cl">- 预测选举
+</span></span><span class="line"><span class="cl">- 根据手机定位和交通数据，规划城市
+</span></span><span class="line"><span class="cl">- 根据库存和需求，实时调价
+</span></span><span class="line"><span class="cl">- 推动医疗信息化发展，远程医疗
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="14-大数据的发展前景">1.4 大数据的发展前景</h3>
+<p>大数据技术目前正处在落地应用的初期，从大数据自身发展和行业发展的趋势来看，大数据未来的前景还是不错的，具体原因有以下几点：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">- 大数据本身的价值体现，
+</span></span><span class="line"><span class="cl">	本身的数据价值化就会开辟出很大的市场空间。目前在互联网领域，大数据技术已经得到了较为广泛的应用。 大数据造就了新兴行业
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">- 大数据推动了科技领域的发展
+</span></span><span class="line"><span class="cl">	不仅体现在互联网领域，还体现在金融、教育、医疗等诸多领域，尤其是现在的人工智能。
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">- 大数据产业链的形成
+</span></span><span class="line"><span class="cl">	经过近些年的发展，大数据已经初步形成了一个较为完整的产业链，包括数据采集、整理、传输、存储、分析、呈现和应用，众多企业开始参与到大数据产业链中，并形成了一定的产业规模，相信随着大数据的不断发展，相
+</span></span><span class="line"><span class="cl">	关产业规模会进一步扩大。
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">- 国家大力扶持大数据行业的发展
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="第二章-hadoop概述">第二章 Hadoop概述</h2>
+<h3 id="21-为什么要用hadoop">2.1 为什么要用hadoop</h3>
+<p>现在的我们，生活在数据大爆炸的年代。2020年，全球的数据总量达到44ZB，经过单位换算后，至少在440亿TB以上，也就是说，全球每人一块1TB的硬盘都存储不下。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">扩展: 数据大小单位，从小到大分别是: byte、kb、mb、Gb、Tb、PB、EB、ZB、DB、NB...
+</span></span><span class="line"><span class="cl">单位之间的转换都是满足1024
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>一些数据集的大小更远远超过了1TB，也就是说，数据的存储是一个要解决的问题。同时，硬盘技术也面临一个技术瓶颈，就是硬盘的传输速度(读数据的速度)的提升远远低于硬盘容量的提升。我们看下面这个表格:</p>
+<p><img src="Hadoop.assets/image-20210401012832988.png" alt="image-20210401012832988"></p>
+<p>可以看到，容量提升了将近1000倍，而传输速度才提升了20倍，读完一个硬盘的所需要的时间相对来说，更长更久了(已经违反了数据价值的即时性)。读数据都花了这么长时间，更不用说写数据了。</p>
+<p>对于如何提高读取数据的效率，我们已经想到解决的方法了，那就是将一个数据集存储到多个硬盘里，然后并行读取。比如1T的数据，我们平均100份存储到100个1TB硬盘上，同时读取，那么读取完整个数据集的时间用不上两分钟。至于硬盘剩下的99%的容量，我们可以用来存储其他的数据集，这样就不会产生浪费。解决读取效率问题的同时，我们也解决了大数据的存储问题。</p>
+<p>但是，我们同时对多个硬盘进行读/写操作时，又有了新的问题需要解决：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1、硬件故障问题。一旦使用多个硬件，相对来说，个别硬件产生故障的几率就高，为了避免数据丢失，最常见的做法就是复制(replication):文件系统保存数据的多个复本，一旦发生故障，就可以使用另外的复本。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2、读取数据的正确性问题。大数据时代的一个分析任务，就需要结合大部分数据来共同完成分析，因此从一个硬盘上读取的数据要与从其他99个硬盘上读取的数据结合起来使用。那么，在读取过程中，如何保证数据的正确性，就是一个很大的挑战。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>针对于上述几个问题，Hadoop为我们提供了一个可靠的且可扩展的存储和分析平台，此外，由于Hadoop运行在商用硬件上且是开源的，因此Hadoop的使用成本是比较低了，在用户的承受范围内。</p>
+<h3 id="22-hadoop的简要介绍">2.2 Hadoop的简要介绍</h3>
+<p>Hadoop是Apache基金会旗下一个开源的分布式存储和分析计算平台，使用java语言开发，具有很好的跨平台性，可以运行在商用(廉价)硬件上，用户无需了解分布式底层细节，就可以开发分布式程序，充分使用集群的高速计算和存储</p>
+<pre><code>Apache lucene是一个应用广泛的文本搜索系统库。该项目的创始人道格·卡丁在2002年带领团队开发该项目中的子项目Apache Nutch，想要从头打造一个网络搜索引擎系统，在开发的过程中，发现了两个问题，一个是硬件的高额资金投入，另一个是存储问题。
+
+2003年和2004年Google先后发表的《GFS》和《MapReduce》论文，给这个团队提供了灵感，并进行了实现，于是NDFS(Nutch分布式文件系统)和MapReduce相继问世。2006年2月份，开发人员将NDFS和MapReduce移出Nutch形成一个独立的子项目，命名为Hadoop(该名字据Doug Cutting所说，是借用了他的孩子给毛绒玩具取得名字)。
+</code></pre>
+<h3 id="23-谷歌的三篇论文">2.3 谷歌的三篇论文</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">- 2003年发表的《GFS》
+</span></span><span class="line"><span class="cl">	基于硬盘不够大、数据存储单份的安全隐患问题，提出的分布式文件系统用于存储的理论思想。
+</span></span><span class="line"><span class="cl">	· 解决了如何存储大数据集的问题
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- 2004年发表的《MapReduce》
+</span></span><span class="line"><span class="cl"> 	基于分布式文件系统的计算分析的编程框架模型。移动计算而非移动数据，分而治之。
+</span></span><span class="line"><span class="cl">	· 解决了如何快速分析大数据集的问题
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">- 2006年发表的《BigTable》
+</span></span><span class="line"><span class="cl">	针对于传统型关系数据库不适合存储非结构化数据的缺点，提出了另一种适合存储大数据集的解决方案
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="24-hadoop的发展历史">2.4 Hadoop的发展历史</h3>
+<p><img src="Hadoop.assets/image-20210401013100075.png" alt="image-20210401013100075"></p>
+<h3 id="25-hadoop的组成部分">2.5 Hadoop的组成部分</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hadoop2.0以后的四个模块：
+</span></span><span class="line"><span class="cl">    - Hadoop Common:Hadoop模块的通用组件
+</span></span><span class="line"><span class="cl">    - Hadoop Distributed File System：分布式文件系统
+</span></span><span class="line"><span class="cl">    - Hadoop YARN：作业调度和资源管理框架
+</span></span><span class="line"><span class="cl">    - Hadoop MapReduce：基于YARN的大型数据集并行计算处理框架
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hadoop3.0新扩展的两个模块：
+</span></span><span class="line"><span class="cl">    - Hadoop Ozone:Hadoop的对象存储机制 
+</span></span><span class="line"><span class="cl">    - Hadoop Submarine:Hadoop的机器学习引擎
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="26-hadoop的生态系统">2.6. Hadoop的生态系统</h3>
+<p><img src="Hadoop.assets/image-20210401013159672.png" alt="image-20210401013159672"></p>
+<h2 id="第三章-hadoop集群安装">第三章 Hadoop集群安装</h2>
+<h3 id="31-集群规划">3.1 集群规划</h3>
+<table>
+<thead>
+<tr>
+<th>集群规划</th>
+<th>规划</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>操作系统</td>
+<td>Mac、Windows</td>
+</tr>
+<tr>
+<td>虚拟软件</td>
+<td>Parallels Desktop(Mac)、VMWare(Windows)</td>
+</tr>
+<tr>
+<td>虚拟机</td>
+<td>主机名: qianfeng01, IP地址: 192.168.10.101<br />主机名: qianfeng02, IP地址: 192.168.10.102<br />主机名: qianfeng03, IP地址: 192.168.10.103</td>
+</tr>
+<tr>
+<td>软件包上传路径</td>
+<td>/root/softwares</td>
+</tr>
+<tr>
+<td>软件包安装路径</td>
+<td>/usr/local</td>
+</tr>
+<tr>
+<td>JDK</td>
+<td>Jdk-8u221-linux-x64.tar.gz</td>
+</tr>
+<tr>
+<td>Hadoop</td>
+<td>hadoop-2.7.6.tar.gz</td>
+</tr>
+<tr>
+<td>用户</td>
+<td>root</td>
+</tr>
+</tbody>
+</table>
+<h3 id="32-安装jdk">3.2 安装JDK</h3>
+<h4 id="321-检查一下是否已经安装过或者系统内置jdk如果有内置的将其卸载">3.2.1 检查一下是否已经安装过或者系统内置JDK,如果有内置的，将其卸载</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># rpm -qa | grep jdk     				# 如果有,请卸载</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># rpm -e xxxxxxxx --nodeps      	# 将查询到的内置jdk强制卸载</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="322-上传jdk18">3.2.2 上传jdk1.8</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">将jdk-8u221-linux-x64.tar.gz上传到/root目录中
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="323-解压jdk到usrlocal下">3.2.3 解压jdk到/usr/local/下</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># tar -zxvf jdk-8u221-linux-x64.tar.gz -C /usr/local</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="324-更名jdk">3.2.4 更名jdk</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># cd /usr/local</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 local<span class="o">]</span><span class="c1"># mv jdk1.8.0_221/  jdk</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="325-配置jdk的环境变量etcprofile">3.2.5 配置Jdk的环境变量：/etc/profile</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 local<span class="o">]</span><span class="c1"># vi /etc/profile</span>
+</span></span><span class="line"><span class="cl">.........省略...........
+</span></span><span class="line"><span class="cl"><span class="c1">#jdk environment</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/local/jdk
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$JAVA_HOME</span>/bin:<span class="nv">$JAVA_HOME</span>/jre/bin:<span class="nv">$PATH</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="326-使当前窗口生效">3.2.6 使当前窗口生效</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 local<span class="o">]</span><span class="c1"># source /etc/profile</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="327-验证jdk环境">3.2.7 验证jdk环境</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">节点发送：
+</span></span><span class="line"><span class="cl">scp -r jdk/ cyul22:<span class="nv">$PWD</span>  <span class="c1"># 同级目录</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 local<span class="o">]</span><span class="c1"># java -version</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 local<span class="o">]</span><span class="c1"># javac	</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="33-完全分布式环境需求及安装--e">3.3. 完全分布式环境需求及安装  ==e</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. 三台机器的防火墙必须是关闭的
+</span></span><span class="line"><span class="cl">2. 确保三台机器的网络配置通常（NAT模式、静态IP、主机名的配置）
+</span></span><span class="line"><span class="cl">3. 确保/etc/hosts文件配置了IP和hosts的映射关系
+</span></span><span class="line"><span class="cl">4. 确保配置了三台机器的免密登录认证
+</span></span><span class="line"><span class="cl">5. 确保所有的机器时间同步
+</span></span><span class="line"><span class="cl">6. JDK和Hadoop的环境变量配置
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="331-关闭防火墙">3.3.1 关闭防火墙</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># systemctl stop firewalld</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># systemctl disable firewalld</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># systemctl stop NetworkManager</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># systemctl disable NetworkManager</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#最好也把selinux关闭掉，这是linux系统的一个安全机制，进入文件中将SELINUX设置为disabled</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># vi /etc/selinux/config</span>
+</span></span><span class="line"><span class="cl">.........
+</span></span><span class="line"><span class="cl"><span class="nv">SELINUX</span><span class="o">=</span>disabled			
+</span></span><span class="line"><span class="cl">.........
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查防火墙状态</span>
+</span></span><span class="line"><span class="cl">systemctl status firewalld
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="332-静态ip和主机名配置">3.3.2 静态IP和主机名配置</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">--1. 配置静态IP（确保NAT模式）
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># vi /etc/sysconfig/network-scripts/ifcfg-ens33</span>
+</span></span><span class="line"><span class="cl">............
+</span></span><span class="line"><span class="cl"><span class="nv">BOOTPROTO</span><span class="o">=</span>static					<span class="c1"># 将dhcp改为static</span>
+</span></span><span class="line"><span class="cl">............
+</span></span><span class="line"><span class="cl"><span class="nv">ONBOOT</span><span class="o">=</span>yes								<span class="c1"># 将no改为yes</span>
+</span></span><span class="line"><span class="cl"><span class="nv">IPADDR</span><span class="o">=</span>192.168.10.101			<span class="c1"># 添加IPADDR属性和ip地址</span>
+</span></span><span class="line"><span class="cl"><span class="nv">PREFIX</span><span class="o">=</span>24									<span class="c1"># 添加NETMASK=255.255.255.0或者PREFIX=24	</span>
+</span></span><span class="line"><span class="cl"><span class="nv">GATEWAY</span><span class="o">=</span>192.168.10.2			<span class="c1"># 添加网关GATEWAY</span>
+</span></span><span class="line"><span class="cl"><span class="nv">DNS1</span><span class="o">=</span>114.114.114.114      <span class="c1"># 添加DNS1和备份DNS</span>
+</span></span><span class="line"><span class="cl"><span class="nv">DNS2</span><span class="o">=</span>8.8.8.8
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--2. 重启网络服务
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># systemctl restart network</span>
+</span></span><span class="line"><span class="cl">或者
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># service network restart</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--3. 修改主机名<span class="o">(</span>如果修改过，请略过这一步<span class="o">)</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># hostnamectl set-hostname qianfeng01</span>
+</span></span><span class="line"><span class="cl">或者
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@localhost ~<span class="o">]</span><span class="c1"># vi /etc/hostname</span>
+</span></span><span class="line"><span class="cl">qianfeng01
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="333-配置etchosts文件">3.3.3 配置/etc/hosts文件</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1">#  vi /etc/hosts</span>
+</span></span><span class="line"><span class="cl">127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+</span></span><span class="line"><span class="cl">::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">192.168.10.101 qianfeng01  <span class="c1">#添加本机的静态IP和本机的主机名之间的映射关系 </span>
+</span></span><span class="line"><span class="cl">192.168.10.102 qianfeng02
+</span></span><span class="line"><span class="cl">192.168.10.103 qianfeng03
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="334-免密登录认证">3.3.4 免密登录认证</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">- 1. 使用rsa加密技术，生成公钥和私钥。一路回车即可
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># cd ~</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># ssh-keygen -t rsa	</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-2. 进入~/.ssh目录下，使用ssh-copy-id命令
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># cd ~/.ssh			</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 .ssh<span class="o">]</span><span class="c1"># ssh-copy-id  root@qianfeng01</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">-3. 进行验证	
+</span></span><span class="line"><span class="cl"><span class="o">[</span>hadoop@qianfeng01 .ssh<span class="o">]</span><span class="c1"># ssh qianfeng01</span>
+</span></span><span class="line"><span class="cl"><span class="c1">#下面的第一次执行时输入yes后，不提示输入密码就对了</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>hadoop@qianfeng01 .ssh<span class="o">]</span><span class="c1"># ssh localhost</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>hadoop@qianfeng01 .ssh<span class="o">]</span><span class="c1"># ssh 0.0.0.0</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">注意：三台机器提前安装好的情况下，需要同步公钥文件。如果使用克隆技术。那么使用同一套密钥对就方便多了。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="335-时间同步">3.3.5 时间同步</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 1 选择集群中的某一台机器作为时间服务器，例如qianfeng01</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 2 保证这台服务器安装了ntp.x86_64。</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 3 保证ntpd 服务运行......</span>
+</span></span><span class="line"><span class="cl">yum install ntp
+</span></span><span class="line"><span class="cl">systemctl staart ntpd 
+</span></span><span class="line"><span class="cl">systemctl status ntpd
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># sudo service ntpd start</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 	开机自启动:</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># chkconfig ntpd on</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl"><span class="c1"># 4 配置相应文件：</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># vi /etc/ntp.conf</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	<span class="c1"># Hosts on local network are less restricted.</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># restrict 192.168.1.0 mask 255.255.255.0 nomodify notrap</span>
+</span></span><span class="line"><span class="cl">  <span class="c1"># 添加集群中的网络段位</span>
+</span></span><span class="line"><span class="cl">	restrict 192.168.10.0 mask 255.255.255.0 nomodify notrap
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c1"># Use public servers from the pool.ntp.org project.</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># Please consider joining the pool (http://www.pool.ntp.org/join.html).</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># server 0.centos.pool.ntp.org iburst    注释掉</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># server 1.centos.pool.ntp.org iburst	   注释掉</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># server 2.centos.pool.ntp.org iburst    注释掉</span>
+</span></span><span class="line"><span class="cl">	<span class="c1"># server 3.centos.pool.ntp.org iburst    注释掉</span>
+</span></span><span class="line"><span class="cl">	server 127.127.1.0     -master作为服务器
+</span></span><span class="line"><span class="cl"><span class="c1"># 5 其他机器要保证安装ntpdate.x86_64</span>
+</span></span><span class="line"><span class="cl">yum install ntpdate -y
+</span></span><span class="line"><span class="cl">ntpdate -u qianfeng01  
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 6 其他机器要使用root定义定时器</span>
+</span></span><span class="line"><span class="cl">*/1 * * * * /usr/sbin/ntpdate -u qianfeng01 
+</span></span><span class="line"><span class="cl">$ crontab -e
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">***** /usr/sbin/ntpdate -u cyul22 &gt; /dev/null 2&gt;&gt;<span class="p">&amp;</span><span class="m">1</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="336-hadoop安装与环境变量配置">3.3.6 Hadoop安装与环境变量配置</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 1. 上传和解压两个软件包</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># tar -zxvf jdk-8u221-linux-x64.tar.gz -C /usr/local/</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># tar -zxvf hadoop-2.7.6.tar.gz -C /usr/local/</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 2. 进入local里，给两个软件更名</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># cd /usr/local/</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 local<span class="o">]</span><span class="c1"># mv 1.8.0_221/  jdk</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 local<span class="o">]</span><span class="c1"># mv hadoop-2.7.6/ hadoop</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 3. 配置环境变量</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>hadoop@qianfeng01 local<span class="o">]</span><span class="c1"># vi /etc/profile</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">.....省略...........
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#java environment</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/local/jdk
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$JAVA_HOME</span>/bin:<span class="nv">$JAVA_HOME</span>/jre/bin:<span class="nv">$PATH</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1">#hadoop environment</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">HADOOP_HOME</span><span class="o">=</span>/usr/local/hadoop
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">PATH</span><span class="o">=</span><span class="nv">$HADOOP_HOME</span>/bin:<span class="nv">$HADOOP_HOME</span>/sbin:<span class="nv">$PATH</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nb">source</span> /etc/profile
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">scp -r hadoop/ cyul22:<span class="nv">$PWD</span>  //# 节点分发
+</span></span><span class="line"><span class="cl">scp -r /etc/profile cyull22:/etc/
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="34-hadoop的配置文件">3.4. Hadoop的配置文件</h3>
+<h4 id="341-概述">3.4.1. 概述</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">我们需要通过配置若干配置文件，来实现Hadoop集群的配置信息。需要配置的文件有:
+</span></span><span class="line"><span class="cl">hadoop-env.sh
+</span></span><span class="line"><span class="cl">yarn-env.sh
+</span></span><span class="line"><span class="cl">core-site.xml
+</span></span><span class="line"><span class="cl">hdfs-site.xml
+</span></span><span class="line"><span class="cl">mapred-site.xml
+</span></span><span class="line"><span class="cl">yarn-site.xml
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">在Hadoop安装完成后，会在$HADOOP_HOME/share路径下，有若干个*-default.xml文件，这些文件中记录了默认的配置信息。同时，在代码中，我们也可以设置Hadoop的配置信息。
+</span></span><span class="line"><span class="cl">这些位置配置的Hadoop，优先级为: 代码设置 &gt; *-site.xml &gt; *-default.xml
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">集群规划:
+</span></span><span class="line"><span class="cl">+--------------+---------------------+
+</span></span><span class="line"><span class="cl">|     Node     | Applications        |
+</span></span><span class="line"><span class="cl">+--------------+---------------------+
+</span></span><span class="line"><span class="cl">|  qianfeng01  | NameNode            |
+</span></span><span class="line"><span class="cl">|              | DataNode            |
+</span></span><span class="line"><span class="cl">|              | ResourceManager     |
+</span></span><span class="line"><span class="cl">|              | NodeManagere        |
+</span></span><span class="line"><span class="cl">+--------------+---------------------+
+</span></span><span class="line"><span class="cl">|  qianfeng02  | SecondaryNameNode   |
+</span></span><span class="line"><span class="cl">|              | DataNode            |
+</span></span><span class="line"><span class="cl">|              | NodeManager         |
+</span></span><span class="line"><span class="cl">+--------------+---------------------+
+</span></span><span class="line"><span class="cl">|  qianfeng03  | DataNode            |
+</span></span><span class="line"><span class="cl">|              | NodeManager         |
+</span></span><span class="line"><span class="cl">+--------------+---------------------+
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="342-core-sitexml">3.4.2. core-site.xml</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">[root@qianfeng01 ~]# cd $HADOOP_HOME/etc/hadoop/
+</span></span><span class="line"><span class="cl">[root@qianfeng01 hadoop]# vi core-site.xml
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;configuration&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- hdfs的地址名称：schame,ip,port--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 在Hadoop1.x的版本中，默认使用的端口是9000。在Hadoop2.x的版本中，默认使用端口是8020 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;name&gt;</span>fs.defaultFS<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;value&gt;</span>hdfs://qianfeng01:8020<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- hdfs的基础路径，被其他属性所依赖的一个基础路径 --&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;name&gt;</span>hadoop.tmp.dir<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;value&gt;</span>/usr/local/hadoop/tmp<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/configuration&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="343-hdfs-sitexml">3.4.3. hdfs-site.xml</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">[root@qianfeng01 hadoop]# vi hdfs-site.xml
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;configuration&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- namenode守护进程管理的元数据文件fsimage存储的位置--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;name&gt;</span>dfs.namenode.name.dir<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;value&gt;</span>file://${hadoop.tmp.dir}/dfs/name<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 确定DFS数据节点应该将其块存储在本地文件系统的何处--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;name&gt;</span>dfs.datanode.data.dir<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;value&gt;</span>file://${hadoop.tmp.dir}/dfs/data<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 块的副本数--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;name&gt;</span>dfs.replication<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;value&gt;</span>3<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 块的大小(128M),下面的单位是字节--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;name&gt;</span>dfs.blocksize<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;value&gt;</span>134217728<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- secondarynamenode守护进程的http地址：主机名和端口号。参考守护进程布局--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;name&gt;</span>dfs.namenode.secondary.http-address<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;value&gt;</span>qianfeng02:50090<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">  	<span class="c">&lt;!-- namenode守护进程的http地址：主机名和端口号。参考守护进程布局--&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">  	  <span class="nt">&lt;name&gt;</span>dfs.namenode.http-address<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">  	  <span class="nt">&lt;value&gt;</span>qianfeng01:50070<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/property&gt;</span>  
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/configuration&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="344-mapred-sitexml">3.4.4. mapred-site.xml</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">[root@qianfeng01 hadoop]# cp mapred-site.xml.template  mapred-site.xml
+</span></span><span class="line"><span class="cl">[root@qianfeng01 hadoop]# vi mapred-site.xml
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;configuration&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 指定mapreduce使用yarn资源管理器--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;name&gt;</span>mapreduce.framework.name<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;value&gt;</span>yarn<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 配置作业历史服务器的地址--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;name&gt;</span>mapreduce.jobhistory.address<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;value&gt;</span>qianfeng01:10020<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 配置作业历史服务器的http地址--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;name&gt;</span>mapreduce.jobhistory.webapp.address<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;value&gt;</span>qianfeng01:19888<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/configuration&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="345-yarn-sitexml">3.4.5 yarn-site.xml</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">[root@qianfeng01 hadoop]# vi yarn-site.xml
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;configuration&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 指定yarn的shuffle技术--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;name&gt;</span>yarn.nodemanager.aux-services<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">       <span class="nt">&lt;value&gt;</span>mapreduce_shuffle<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!-- 指定resourcemanager的主机名--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;name&gt;</span>yarn.resourcemanager.hostname<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">        <span class="nt">&lt;value&gt;</span>qianfeng01<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;/property&gt;</span> 
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--下面的可选--&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="c">&lt;!--指定shuffle对应的类 --&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;property&gt;</span> 
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;name&gt;</span>yarn.nodemanager.aux-services.mapreduce_shuffle.class<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">     <span class="nt">&lt;value&gt;</span>org.apache.hadoop.mapred.ShuffleHandler<span class="nt">&lt;/value&gt;</span> 
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c">&lt;!--配置resourcemanager的内部通讯地址--&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;name&gt;</span>yarn.resourcemanager.address<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;value&gt;</span>qianfeng01:8032<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c">&lt;!--配置resourcemanager的scheduler的内部通讯地址--&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;name&gt;</span>yarn.resourcemanager.scheduler.address<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;value&gt;</span>qianfeng01:8030<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c">&lt;!--配置resoucemanager的资源调度的内部通讯地址--&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;name&gt;</span>yarn.resourcemanager.resource-tracker.address<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;value&gt;</span>qianfeng01:8031<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c">&lt;!--配置resourcemanager的管理员的内部通讯地址--&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;name&gt;</span>yarn.resourcemanager.admin.address<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;value&gt;</span>qianfeng01:8033<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">	<span class="c">&lt;!--配置resourcemanager的web ui 的监控页面--&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;name&gt;</span>yarn.resourcemanager.webapp.address<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;value&gt;</span>qianfeng01:8088<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/configuration&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="346-hadoop-envsh">3.4.6 hadoop-env.sh</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 hadoop<span class="o">]</span><span class="c1"># vi hadoop-env.sh</span>
+</span></span><span class="line"><span class="cl">.........
+</span></span><span class="line"><span class="cl"><span class="c1"># The java implementation to use.</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/local/jdk
+</span></span><span class="line"><span class="cl">.........
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="347-yarn-envsh">3.4.7 yarn-env.sh</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 hadoop<span class="o">]</span><span class="c1"># vi yarn-env.sh</span>
+</span></span><span class="line"><span class="cl">.........
+</span></span><span class="line"><span class="cl"><span class="c1"># some Java parameters</span>
+</span></span><span class="line"><span class="cl"><span class="nb">export</span> <span class="nv">JAVA_HOME</span><span class="o">=</span>/usr/local/jdk
+</span></span><span class="line"><span class="cl"><span class="k">if</span> <span class="o">[</span> <span class="s2">&#34;</span><span class="nv">$JAVA_HOME</span><span class="s2">&#34;</span> !<span class="o">=</span> <span class="s2">&#34;&#34;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+</span></span><span class="line"><span class="cl">  <span class="c1">#echo &#34;run java in $JAVA_HOME&#34;</span>
+</span></span><span class="line"><span class="cl">  <span class="nv">JAVA_HOME</span><span class="o">=</span><span class="nv">$JAVA_HOME</span>
+</span></span><span class="line"><span class="cl"><span class="k">fi</span>
+</span></span><span class="line"><span class="cl">.........
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="348-slaves">3.4.8 slaves</h4>
+<p>此文件用于指定datanode守护进程所在的机器节点主机名</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[root@qianfeng01 hadoop]# vi slaves
+</span></span><span class="line"><span class="cl">qianfeng01
+</span></span><span class="line"><span class="cl">qianfeng02
+</span></span><span class="line"><span class="cl">qianfeng03
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="349-分发到另外两台节点">3.4.9 分发到另外两台节点</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 同步Hadoop到另外两台节点</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># cd /usr/local</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng02 local<span class="o">]</span><span class="c1"># scp -r hadoop qianfeng02:$PWD</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng02 local<span class="o">]</span><span class="c1"># scp -r hadoop qianfeng03:$PWD</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 同步profile到另外两台节点</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># scp /etc/profile qianfeng02:/etc</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># scp /etc/profile qianfeng03:/etc</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查slave节点上的jdk是否已安装</span>
+</span></span><span class="line"><span class="cl"><span class="c1"># 检查是否同步了/etc/hosts文件</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="35-格式化与启动">3.5 格式化与启动</h3>
+<h4 id="351-格式化集群">3.5.1 格式化集群</h4>
+<p>**1）**在qianfeng01机器上运行命令</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># hdfs namenode -format</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**2）**格式化的相关信息解读</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">--1. 生成一个集群唯一标识符:clusterid
+</span></span><span class="line"><span class="cl">--2. 生成一个块池唯一标识符:blockPoolId
+</span></span><span class="line"><span class="cl">--3. 生成namenode进程管理内容<span class="o">(</span>fsimage<span class="o">)</span>的存储路径：
+</span></span><span class="line"><span class="cl">	默认配置文件属性hadoop.tmp.dir指定的路径下生成dfs/name目录
+</span></span><span class="line"><span class="cl">--4. 生成镜像文件fsimage，记录分布式文件系统根路径的元数据
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">--5. 其他信息都可以查看一下，比如块的副本数，集群的fsOwner等。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>参考图片：</p>
+<p><img src="Hadoop.assets/image-20210401104441770.png" alt="image-20210401104441770"></p>
+<p><strong>3)</strong> 目录里的内容查看</p>
+<p><img src="Hadoop.assets/image-20210401104504725.png" alt="image-20210401104504725"></p>
+<h4 id="352-启动集群">3.5.2 启动集群</h4>
+<p><strong>1)</strong> 启动脚本和关闭脚本介绍</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl">1. 启动脚本
+</span></span><span class="line"><span class="cl">	-- start-dfs.sh			:用于启动hdfs集群的脚本
+</span></span><span class="line"><span class="cl">	-- start-yarn.sh		:用于启动yarn守护进程
+</span></span><span class="line"><span class="cl">	-- start-all.sh			:用于启动hdfs和yarn
+</span></span><span class="line"><span class="cl">2. 关闭脚本
+</span></span><span class="line"><span class="cl">	-- stop-dfs.sh			:用于关闭hdfs集群的脚本
+</span></span><span class="line"><span class="cl">	-- stop-yarn.sh			:用于关闭yarn守护进程
+</span></span><span class="line"><span class="cl">	-- stop-all.sh			:用于关闭hdfs和yarn
+</span></span><span class="line"><span class="cl">3. 单个守护进程脚本
+</span></span><span class="line"><span class="cl">	-- hadoop-daemons.sh	:用于单独启动或关闭hdfs的某一个守护进程的脚本
+</span></span><span class="line"><span class="cl">	-- hadoop-daemon.sh		:用于单独启动或关闭hdfs的某一个守护进程的脚本
+</span></span><span class="line"><span class="cl">	reg:
+</span></span><span class="line"><span class="cl">		hadoop-daemon.sh <span class="o">[</span>start<span class="p">|</span>stop<span class="o">]</span> <span class="o">[</span>namenode<span class="p">|</span>datanode<span class="p">|</span>secondarynamenode<span class="o">]</span>
+</span></span><span class="line"><span class="cl">	
+</span></span><span class="line"><span class="cl">	-- yarn-daemons.sh	:用于单独启动或关闭hdfs的某一个守护进程的脚本
+</span></span><span class="line"><span class="cl">	-- yarn-daemon.sh		:用于单独启动或关闭hdfs的某一个守护进程的脚本
+</span></span><span class="line"><span class="cl">	reg:
+</span></span><span class="line"><span class="cl">		yarn-daemon.sh <span class="o">[</span>start<span class="p">|</span>stop<span class="o">]</span> <span class="o">[</span>resourcemanager<span class="p">|</span>nodemanager<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**2) ** 启动HDFS</p>
+<p>使用start-dfs.sh，启动 hdfs。参考图片</p>
+<p><img src="Hadoop.assets/image-20210401104625494.png" alt="image-20210401104625494"></p>
+<p>启动过程解析：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">- 启动集群中的各个机器节点上的分布式文件系统的守护进程
+</span></span><span class="line"><span class="cl">  一个namenode和resourcemanager以及secondarynamenode
+</span></span><span class="line"><span class="cl">  多个datanode和nodemanager
+</span></span><span class="line"><span class="cl">- 在namenode守护进程管理内容的目录下生成edit日志文件
+</span></span><span class="line"><span class="cl">- 在每个datanode所在节点下生成${hadoop.tmp.dir}/dfs/data目录,参考下图：
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="Hadoop.assets/image-20210401104650560.png" alt="image-20210401104650560"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">注意！
+</span></span><span class="line"><span class="cl">如果哪台机器的相关守护进程没有开启，那么，就查看哪台机器上的守护进程对应的日志log文件,注意，启动脚本运行时提醒的日志后缀是*.out，而我们查看的是*.log文件。此文件的位置：${HADOOP_HOME}/logs/里
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3)</strong>  jps查看进程</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">--1. 在qianfeng01上运行jps指令，会有如下进程
+</span></span><span class="line"><span class="cl">	namenode
+</span></span><span class="line"><span class="cl">	datanode
+</span></span><span class="line"><span class="cl">--2. 在qianfeng02上运行jps指令，会有如下进程
+</span></span><span class="line"><span class="cl">	secondarynamenode
+</span></span><span class="line"><span class="cl">	datanode
+</span></span><span class="line"><span class="cl">--3. 在qianfeng03上运行jps指令，会有如下进程
+</span></span><span class="line"><span class="cl">	datanode   
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**4) **启动yarn</p>
+<p>使用start-yarn.sh脚本，参考图片</p>
+<p><img src="Hadoop.assets/image-20210401104811173.png" alt="image-20210401104811173"></p>
+<p>jps查看</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">--1. 在qianfeng01上运行jps指令，会多出有如下进程
+</span></span><span class="line"><span class="cl">	resoucemanager
+</span></span><span class="line"><span class="cl">	nodemanager
+</span></span><span class="line"><span class="cl">--2. 在qianfeng02上运行jps指令，会多出有如下进程
+</span></span><span class="line"><span class="cl">	nodemanager
+</span></span><span class="line"><span class="cl">--3. 在qianfeng03上运行jps指令，会多出有如下进程
+</span></span><span class="line"><span class="cl">	nodemanager 
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>5)</strong> webui查看</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">HDFS: http://192.168.10.101:50070
+</span></span><span class="line"><span class="cl">YARN: http://192.168.10.101:8088
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="第四章-hdfs的shell命令">第四章 HDFS的Shell命令</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">HDFS其实就是一个分布式的文件系统，我们可以使用一些命令来操作这个分布式文件系统上的文件。
+</span></span><span class="line"><span class="cl">- 访问HDFS的命令:
+</span></span><span class="line"><span class="cl">  hadoop dfs --- 已过时
+</span></span><span class="line"><span class="cl">  hdfs dfs
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">- 小技巧
+</span></span><span class="line"><span class="cl">  1. 在命令行中输入hdfs，回车后，就会提示hdfs后可以使用哪些命令，其中有一个是dfs。
+</span></span><span class="line"><span class="cl">  2. 在命令行中输入hdfs dfs，回车后，就会提示dfs后可以添加的一些常用shell命令。
+</span></span><span class="line"><span class="cl">  
+</span></span><span class="line"><span class="cl">- 注意事项
+</span></span><span class="line"><span class="cl">  分布式文件系统的路径在命令行中，要从/开始写，即绝对路径。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="41-创建目录">4.1 创建目录</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>-mkdir <span class="o">[</span>-p<span class="o">]</span> &lt;path&gt; ...<span class="o">]</span>	<span class="c1">#在分布式文件系统上创建目录  -p,多层级创建</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">调用格式: hdfs dfs -mkdir <span class="o">(</span>-p<span class="o">)</span>  /目录
+</span></span><span class="line"><span class="cl">例如: 
+</span></span><span class="line"><span class="cl">    - hdfs dfs -mkdir /data
+</span></span><span class="line"><span class="cl">    - hdfs dfs -mkdir -p /data/a/b/c
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="42-上传指令">4.2 上传指令</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>-put <span class="o">[</span>-f<span class="o">]</span> <span class="o">[</span>-p<span class="o">]</span> <span class="o">[</span>-l<span class="o">]</span> &lt;localsrc&gt; ... &lt;dst&gt;<span class="o">]</span>   <span class="c1">#将本地文件系统的文件上传到分布式文件系统</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">调用格式:hdfs dfs -put /本地文件  /分布式文件系统路径
+</span></span><span class="line"><span class="cl">注意: 直接写/是省略了文件系统的名称hdfs://ip:port。
+</span></span><span class="line"><span class="cl">例如:
+</span></span><span class="line"><span class="cl">    - hdfs dfs -put /root/a.txt /data/
+</span></span><span class="line"><span class="cl">    - hdfs dfs -put /root/logs/* /data/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">其他指令:
+</span></span><span class="line"><span class="cl">    <span class="o">[</span>-moveFromLocal &lt;localsrc&gt; ... &lt;dst&gt;<span class="o">]</span>		<span class="c1">#将本地文件系统的文件上传到分布式文件系统</span>
+</span></span><span class="line"><span class="cl">    <span class="o">[</span>-copyFromLocal <span class="o">[</span>-f<span class="o">]</span> <span class="o">[</span>-p<span class="o">]</span> <span class="o">[</span>-l<span class="o">]</span> &lt;localsrc&gt; ... &lt;dst&gt;<span class="o">]</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="43-创建空文件">4.3 创建空文件</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hdfs dfs [generic options] -touchz &lt;path&gt; ...   
+</span></span><span class="line"><span class="cl">调用格式:hdfs dfs touchz  /hadooptest.txt
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="44-向分布式文件系统中的文件里追加内容">4.4 向分布式文件系统中的文件里追加内容</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[-appendToFile &lt;localsrc&gt; ... &lt;dst&gt;]
+</span></span><span class="line"><span class="cl">调用格式:hdfs dfs -appendToFile  本地文件     hdfs上的文件
+</span></span><span class="line"><span class="cl">注意:不支持在中间随意增删改操作
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="45-查看指令">4.5 查看指令</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[-ls [-d] [-h] [-R] [&lt;path&gt; ...]]		#查看分布式文件系统的目录里内容
+</span></span><span class="line"><span class="cl">调用格式:hdfs dfs -ls /
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[-cat [-ignoreCrc] &lt;src&gt; ...]	    	#查看分布式文件系统的文件内容	
+</span></span><span class="line"><span class="cl">调用格式:hdfs dfs -cat /xxx.txt
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[-tail [-f] &lt;file&gt;]						#查看分布式文件系统的文件内容	
+</span></span><span class="line"><span class="cl">调用格式:hdfs dfs -tail /xxx.txt
+</span></span><span class="line"><span class="cl">注意:默认最多查看1000行
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="46-下载指令">4.6 下载指令</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[-copyToLocal [-p] [-ignoreCrc] [-crc] &lt;src&gt; ... &lt;localdst&gt;]
+</span></span><span class="line"><span class="cl">注意:本地路径的文件夹可以不存在
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[-moveToLocal &lt;src&gt; &lt;localdst&gt;]
+</span></span><span class="line"><span class="cl">注意:从hdfs的某个路径将数据剪切到本地,已经被遗弃了
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[-get [-p] [-ignoreCrc] [-crc] &lt;src&gt; ... &lt;localdst&gt;]	
+</span></span><span class="line"><span class="cl">调用格式:同copyToLocal
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="47-合并下载">4.7 合并下载</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hdfs dfs [generic options] -getmerge [-nl] &lt;src&gt; &lt;localdst&gt;
+</span></span><span class="line"><span class="cl">调用格式:hdfs dfs -getmerge  hdfs上面的路径   本地的路径    
+</span></span><span class="line"><span class="cl">实例:hdfs dfs -getmerge /hadoopdata/*.xml /root/test.test
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="48--移动hdfs中的文件更名">4.8  移动hdfs中的文件（更名）</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">hdfs dfds [generic options] -mv &lt;src&gt; ... &lt;dst&gt;   
+</span></span><span class="line"><span class="cl">调用格式:hdfs dfs -mv /hdfs的路径1  /hdfs的另一个路径2    
+</span></span><span class="line"><span class="cl">实例:hfds dfs -mv /aaa   /bbb  这里是将aaa整体移动到bbb中
+</span></span><span class="line"><span class="cl">hdfs dfs -mv /file* /data
+</span></span><span class="line"><span class="cl">[root@cyul11 ~]# hdfs dfs -mv /test /test1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="49-复制hdfs中的文件到hdfs的另一个目录">4.9 复制hdfs中的文件到hdfs的另一个目录</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hdfs dfs <span class="o">[</span>generic options<span class="o">]</span> -cp <span class="o">[</span>-f<span class="o">]</span> <span class="o">[</span>-p <span class="p">|</span> -p<span class="o">[</span>topax<span class="o">]]</span> &lt;src&gt; ... &lt;dst&gt;
+</span></span><span class="line"><span class="cl">调用格式:hdfs dfs -cp /hdfs路径_1  /hdfs路径_2
+</span></span><span class="line"><span class="cl">hdfs dfs -cp /data/file1 /
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="410-删除命令">4.10 删除命令</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">[-rm [-f] [-r|-R] [-skipTrash] &lt;src&gt; ...]
+</span></span><span class="line"><span class="cl">注意:如果删除文件夹需要加-r
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[-rmdir [--ignore-fail-on-non-empty] &lt;dir&gt; ...]
+</span></span><span class="line"><span class="cl">注意:必须是空文件夹,如果非空必须使用rm删除
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="411-查看磁盘利用率和文件大小">4.11 查看磁盘利用率和文件大小</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>-df <span class="o">[</span>-h<span class="o">]</span> <span class="o">[</span>&lt;path&gt; ...<span class="o">]]</span> 查看分布式系统的磁盘使用情况
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-du <span class="o">[</span>-s<span class="o">]</span> <span class="o">[</span>-h<span class="o">]</span> &lt;path&gt; ...<span class="o">]</span>	<span class="c1">#查看分布式系统上当前路径下文件的情况	-h：human 以人类可读的方式显示</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hdfs dfs -df -h /  <span class="c1"># 磁盘情况</span>
+</span></span><span class="line"><span class="cl">hdfs dfs -du -h /data   <span class="c1"># 路径下各个文件占用情况</span>
+</span></span><span class="line"><span class="cl">hdfs dfs -du -h -s /data  <span class="c1"># 汇总</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="412-修改权限的">4.12 修改权限的</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">跟本地的操作一致,-R是让子目录或文件也进行相应的修改
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-chgrp <span class="o">[</span>-R<span class="o">]</span> GROUP PATH...<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-chmod <span class="o">[</span>-R<span class="o">]</span> &lt;MODE<span class="o">[</span>,MODE<span class="o">]</span>... <span class="p">|</span> OCTALMODE&gt; PATH...<span class="o">]</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>-chown <span class="o">[</span>-R<span class="o">]</span> <span class="o">[</span>OWNER<span class="o">][</span>:<span class="o">[</span>GROUP<span class="o">]]</span> PATH...<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hdfs dfs -chmod <span class="m">777</span> /data   <span class="c1"># 修改权限</span>
+</span></span><span class="line"><span class="cl">hdfs dfs -chown shown:shown /data  <span class="c1"># 所属用户:所属用户组.</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="413-修改文件的副本数">4.13 修改文件的副本数</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>-setrep <span class="o">[</span>-R<span class="o">]</span> <span class="o">[</span>-w<span class="o">]</span> &lt;rep&gt; &lt;path&gt; ...<span class="o">]</span>
+</span></span><span class="line"><span class="cl">调用格式:hadoop fs -setrep  <span class="m">3</span> /   将hdfs根目录及子目录下的内容设置成3个副本
+</span></span><span class="line"><span class="cl">注意:当设置的副本数量与初始化时默认的副本数量不一致时,集群会作出反应,比原来多了会自动进行复制.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hdfs dfs -setrep <span class="m">5</span> /data   <span class="c1"># 修改副本数量</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="414-查看文件的状态">4.14 查看文件的状态</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hdfs dfs <span class="o">[</span>generic options<span class="o">]</span> -stat <span class="o">[</span>format<span class="o">]</span> &lt;path&gt; ...
+</span></span><span class="line"><span class="cl">命令的作用:当向hdfs上写文件时，可以通过dfs.blocksize配置项来设置文件的block的大小。这就导致了hdfs上的不同的文件block的大小是不相同的。有时候想知道hdfs上某个文件的block大小，可以预先估算一下计算的task的个数。stat的意义：可以查看文件的一些属性。
+</span></span><span class="line"><span class="cl">调用格式:hdfs dfs -stat <span class="o">[</span>format<span class="o">]</span> 文件路径
+</span></span><span class="line"><span class="cl">format的形式：
+</span></span><span class="line"><span class="cl">%b：打印文件的大小（目录大小为0）
+</span></span><span class="line"><span class="cl">%n：打印文件名
+</span></span><span class="line"><span class="cl">%o：打印block的size
+</span></span><span class="line"><span class="cl">%r：打印副本数
+</span></span><span class="line"><span class="cl">%y：utc时间 yyyy-MM-dd HH:mm:ss
+</span></span><span class="line"><span class="cl">%Y：打印自1970年1月1日以来的utc的微秒数
+</span></span><span class="line"><span class="cl">%F：目录打印directory，文件打印regular file
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">注意:
+</span></span><span class="line"><span class="cl">1<span class="o">)</span>当使用-stat命令但不指定format时，只打印创建时间，相当于%y
+</span></span><span class="line"><span class="cl">2<span class="o">)</span>-stat 后面只跟目录,%r,%o等打印的都是0,只有文件才有副本和大小
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">hdfs dfs -stat /data/a1     
+</span></span><span class="line"><span class="cl">hdfs dfs -stat %n,%b /data/a1     <span class="c1"># 文件状态</span>
+</span></span><span class="line"><span class="cl">hdfs dfs -stat name:%n,size:%b /data/a1
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="415-测试">4.15 测试</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">hdfs dfs <span class="o">[</span>generic options<span class="o">]</span> -test -<span class="o">[</span>defsz<span class="o">]</span> &lt;path&gt;    
+</span></span><span class="line"><span class="cl">参数说明: -e:文件是否存在  存在返回0    -z:文件是否为空  为空返回0   -d:是否是路径<span class="o">(</span>目录<span class="o">)</span> ,是返回0
+</span></span><span class="line"><span class="cl">调用格式:hdfs dfs -test -d 文件 
+</span></span><span class="line"><span class="cl">实例:hdfs dfs -test -d /shelldata/111.txt  <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&#34;OK&#34;</span>  <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&#34;no&#34;</span>
+</span></span><span class="line"><span class="cl">解释:测试当前的内容是否是文件夹 ,如果是返回ok,如果不是返回no
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"> hdfs dfs -test -e /data/a1 <span class="o">&amp;&amp;</span> <span class="nb">echo</span> <span class="s2">&#34;exists&#34;</span> <span class="o">||</span> <span class="nb">echo</span> <span class="s2">&#34;none&#34;</span>  <span class="c1"># 测试</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="第五章-hdfs的块的概念">第五章 HDFS的块的概念</h2>
+<h3 id="51-传统型分布式文件系统的缺点">5.1 传统型分布式文件系统的缺点</h3>
+<p>现在想象一下这种情况：有四个文件 0.5TB的file1，1.2TB的file2，50GB的file3，100GB的file4；有7个服务器，每个服务器上有10个1TB的硬盘。</p>
+<p><img src="Hadoop.assets/image-20210401105627870.png" alt="image-20210401105627870"></p>
+<p>在存储方式上，我们可以将这四个文件存储在同一个服务器上（当然大于1TB的文件需要切分）。那么缺点也就暴露了出来：</p>
+<p>第一、负载不均衡。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">因为文件大小不一致，势必会导致有的节点磁盘的利用率高，有的节点磁盘利用率低。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>第二、网络瓶颈问题。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">一个过大的文件存储在一个节点磁盘上，当有并行处理时，每个线程都需要从这个节点磁盘上读取这个文件的内容，那么就会出现网络瓶颈，不利于分布式的数据处理。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="52-hdfs的块">5.2 HDFS的块</h3>
+<p>HDFS与其他普通文件系统一样，同样引入了块(Block)的概念，并且<strong>块的大小是固定的</strong>。但是不像普通文件系统那样小，而是根据实际需求可以自定义的。块是HDFS系统当中的最小存储单位，在hadoop2.0中默认大小为128MB（hadoop1.x中的块大小为64M）。在HDFS上的文件会被拆分成多个块，每个块作为独立的单元进行存储。多个块存放在不同的DataNode上，<strong>整个过程中 HDFS系统会保证一个块存储在一个数据节点上</strong> 。但值得注意的是，如果某文件大小或者文件的最后一个块没有到达128M，<strong>则不会占据整个块空间</strong> 。</p>
+<p>我们来看看HDFS的设计思想：以下图为例，来进行解释。</p>
+<p><img src="Hadoop.assets/image-20210401105639009.png" alt="image-20210401105639009"></p>
+<h3 id="53-hdfs的块大小">5.3 HDFS的块大小</h3>
+<p>HDFS上的块大小为什么会远远大于传统文件?</p>
+<blockquote>
+<ol>
+<li>
+<p>目的是为了==最小化寻址开销时间==。
+在I/O开销中，机械硬盘的寻址时间是最耗时的部分，一旦找到第一条记录，剩下的顺序读取效率是非常高的，因此以块为单位读写数据，可以尽量减少总的磁盘寻道时间。<br>
+HDFS寻址开销不仅包括磁盘寻道开销，还包括数据块的定位开销，当客户端需要访问一个文件时，首先从名称节点获取组成这个文件的数据块的位置列表，然后根据位置列表获取实际存储各个数据块的数据节点的位置，最后，数据节点根据数据块信息在本地Linux文件系统中找到对应的文件，并把数据返回给客户端，设计成一个比较大的块，可以减少每个块儿中数据的总的寻址开销，相对降低了单位数据的寻址开销
+磁盘的寻址时间为大约在5~15ms之间，平均值为10ms,而最小化寻址开销时间普遍认为占1秒的百分之一是最优的，那么块大小的选择就参考1秒钟的传输速度，比如2010年硬盘的传输速率是100M/s，那么就选择块大小为128M。</p>
+</li>
+<li>
+<p>为了节省内存的使用率
+一个块的元数据大约150个字节。1亿个块，不论大小，都会占用20G左右的内存。因此块越大，集群相对存储的数据就越多。所以暴漏了HDFS的一个缺点，不适合存储小文件。</p>
+</li>
+</ol>
+</blockquote>
+<blockquote>
+<p>不适合存储小文件解释:</p>
+<ol>
+<li>
+<p>从存储能力出发（固定内存）
+因为HDFS的文件是以块为单位存储的，且如果文件大小不到128M的时候，是不会占用整个块的空间的。但是，这个块依然会在内存中占用150个字节的元数据。因此，同样的内存占用的情况下，大量的小文件会导致集群的存储能力不足。
+例如: 同样是128G的内存，最多可存储9.2亿个块。如果都是小文件，例如1M，则集群存储的数据大小为9.2亿*1M = 877TB的数据。但是如果存储的都是128M的文件，则集群存储的数据大小为109.6PB的数据。存储能力大不相同。</p>
+</li>
+<li>
+<p>从内存占用出发（固定存储能力）
+同样假设存储1M和128M的文件对比，同样存储1PB的数据，如果是1M的小文件存储，占用的内存空间为1PB/1Mb*150Byte = 150G的内存。如果存储的是128M的文件存储，占用的内存空间为1PB/128M*150Byte = 1.17G的内存占用。可以看到，同样存储1PB的数据，小文件的存储比起大文件占用更多的内存。</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="54-块的相关参数设置">5.4 块的相关参数设置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl">当然块大小在默认配置文件hdfs-default.xml中有相关配置，我们可以在hdfs-site.xml中进行重置
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>dfs.blocksize<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;value&gt;</span>134217728<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;description&gt;</span>默认块大小，以字节为单位。可以使用以下后缀(不区分大小写):k，m，g，t，p，e以重新指定大小(例如128k, 512m, 1g等)<span class="nt">&lt;/description&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>dfs.namenode.fs-limits.min-block-size<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;value&gt;</span>1048576<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;description&gt;</span>以字节为单位的最小块大小，由Namenode在创建时强制执行时间。这可以防止意外创建带有小块的文件降低性能。<span class="nt">&lt;/description&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>dfs.namenode.fs-limits.max-blocks-per-file<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;value&gt;</span>1048576<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;description&gt;</span>每个文件的最大块数，由写入时的Namenode执行。这可以防止创建降低性能的超大文件<span class="nt">&lt;/description&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="55-块的存储位置">5.5 块的存储位置</h3>
+<p>在<code>hdfs-site.xml</code>中我们配置过下面这个属性，这个属性的值就是块在linux系统上的存储位置</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="p">|</span>tmp
+</span></span><span class="line"><span class="cl"> <span class="p">|</span>dfs
+</span></span><span class="line"><span class="cl">  <span class="p">|</span>data   <span class="c1"># 分布式文件系统数据</span>
+</span></span><span class="line"><span class="cl">   <span class="p">|</span>current 
+</span></span><span class="line"><span class="cl">    <span class="p">|</span>BP-1807686346-192.168.220.137-1649750183815   <span class="c1"># 块池</span>
+</span></span><span class="line"><span class="cl">     <span class="p">|</span>current
+</span></span><span class="line"><span class="cl">      <span class="p">|</span>finalized
+</span></span><span class="line"><span class="cl">       <span class="p">|</span>subdir0
+</span></span><span class="line"><span class="cl">        <span class="p">|</span>subdor0  <span class="c1"># 块的存储路径</span>
+</span></span><span class="line"><span class="cl">        	blk_1073741825 blk_1073741826 ....
+</span></span><span class="line"><span class="cl">  <span class="p">|</span>name   <span class="c1"># namenode</span>
+</span></span><span class="line"><span class="cl">   <span class="p">|</span>current
+</span></span><span class="line"><span class="cl">   	<span class="p">|</span>fsimage和edit  <span class="c1"># Namenode 持久性文件（fsimage和edit）进行备份</span>
+</span></span><span class="line"><span class="cl">    <span class="p">|</span> VERSION
+</span></span><span class="line"><span class="cl">	  <span class="nv">blockpoolID</span><span class="o">=</span>BP-1807686346-192.168.220.137-1649750183815
+</span></span><span class="line"><span class="cl">    	
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!-- 确定DFS数据节点应该将其块存储在本地文件系统的何处--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>dfs.datanode.data.dir<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;value&gt;</span>file://${hadoop.tmp.dir}/dfs/data<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="Hadoop.assets/image-20210401105654266.png" alt="image-20210401105654266"></p>
+<h3 id="56-hdfs的优点">5.6 HDFS的优点</h3>
+<blockquote>
+<ol>
+<li>
+<p>高容错性（硬件故障是常态）：数据自动保存多个副本，副本丢失后，会自动恢复</p>
+<p>==质不够, 量来凑==</p>
+</li>
+<li>
+<p>适合大数据集：GB、TB、甚至PB级数据、千万规模以上的文件数量，1000以上节点规模。</p>
+</li>
+<li>
+<p>数据访问： 一次性写入，多次读取；保证数据一致性,安全性</p>
+</li>
+<li>
+<p>构建成本低：可以构建在廉价机器上。</p>
+</li>
+<li>
+<p>多种软硬件平台中的可移植性</p>
+</li>
+<li>
+<p>高效性：Hadoop能够在节点之间动态地移动数据，并保证各个节点的动态平衡，因此处理速度非常快。</p>
+</li>
+<li>
+<p>高可靠性：Hadoop的存储和处理数据的能力值得人们信赖.</p>
+</li>
+</ol>
+</blockquote>
+<h3 id="57-hdfs的缺点">5.7 HDFS的缺点</h3>
+<blockquote>
+<ol>
+<li>不适合做低延迟数据访问：
+HDFS的设计目标有一点是：处理大型数据集，高吞吐率。这一点势必要以高延迟为代价的。因此HDFS==不适合处理用户要求的毫秒级的低延迟==应用请求</li>
+<li>不适合小文件存取：
+一个是大量小文件需要消耗大量的寻址时间，违反了HDFS的尽可能减少寻址时间比例的设计目标。第二个是内存有限，一个block元数据大内存消耗大约为150个字节，存储一亿个block和存储一亿个小文件都会消耗20G内存。因此相对来说，大文件更省内存。</li>
+<li>不适合并发写入，文件随机修改：
+HDFS上的文件只能拥有一个写者，仅仅支持append操作。不支持多用户对同一个文件的写操作，以及在文件任意位置进行修改</li>
+</ol>
+</blockquote>
+<h2 id="第六章-hdfs的体系结构">第六章 HDFS的体系结构</h2>
+<h3 id="61-体系结构解析">6.1 体系结构解析</h3>
+<blockquote>
+<p>HDFS采用的是master/slaves这种主从的结构模型来管理数据，这种结构模型主要由四个部分组成，分别是==Client(客户端)、Namenode(名称节点)、Datanode(数据节点)和SecondaryNameNode==。</p>
+<p>真正的一个HDFS集群包括一个Namenode和若干数目的Datanode。</p>
+<p>Namenode是一个中心服务器，负责==管理文件系统的命名空间 (Namespace)==,它在内存中维护着命名空间的最新状态，同时并持久性文件（fsimage和edit）进行备份，防止宕机后，数据丢失。namenode还负责管理客户端对文件的访问，比如权限验证等。</p>
+<p><strong>维护你的目录结构, 记录块的源数据信息</strong></p>
+<p>fsimage 元数据</p>
+<p>edit  数据操作  创建删除文件夹</p>
+<p>集群中的Datanode一般是一个节点运行一个Datanode进程，==真正负责管理客户端的读写请求==，在Namenode的统一调度下进行数据块的创建、删除和复制等操作。数据块实际上都是保存在Datanode本地的Linux文件系统中的。每个Datanode会定期的向Namenode发送数据，报告自己的状态(我们称之为心跳机制)。没有按时发送心跳信息的Datanode会被Namenode标记为“宕机”，不会再给他分配任何I/O请求。</p>
+<p>用户在使用Client进行I/O操作时,仍然可以像使用普通文件系统那样，使用文件名去存储和访问文件，</p>
+<p><code>hdfs dfs -cat /data/*</code>. 只不过，在HDFS内部，一个文件会被切分成若干个数据块，然后被分布存储在若干个Datanode上。</p>
+<p>比如，用户在Client上需要访问一个文件时，HDFS的实际工作流程如此：</p>
+<ul>
+<li>
+<p>客户端先把文件名发送给Namenode，</p>
+</li>
+<li>
+<p>Namenode根据文件名找到对应的数据块信息及其每个数据块所在的Datanode位置，</p>
+</li>
+<li>
+<p>然后把这些信息发送给客户端。</p>
+</li>
+<li>
+<p>之后，客户端就直接与这些Datanode进行通信，来获取数据（这个过程，Namenode并不参与数据块的传输）。</p>
+</li>
+</ul>
+<p>这种设计方式，实现了并发访问，大大提高了数据的访问速度。</p>
+<p>HDFS集群中只有唯一的一个Namenode,负责所有元数据的管理工作。这种方式保证了Datanode不会脱离Namenode的控制，同时，用户数据也永远不会经过Namenode，大大减轻了Namenode的工作负担，使之更方便管理工作。通常在部署集群中，我们要选择一台性能较好的机器来作为Namenode。当然，一台机器上也可以运行多个Datanode，甚至Namenode和Datanode也可以在一台机器上，只不过实际部署中，通常不会这么做的</p>
+</blockquote>
+<p><img src="Hadoop.assets/image-20210401110221175.png" alt="image-20210401110221175"></p>
+<h3 id="62-开机启动hdfs的过程">6.2 开机启动HDFS的过程</h3>
+<h4 id="621-非第一次启动集群">6.2.1 非第一次启动集群</h4>
+<p>我们应该知道，在启动namenode之前，内存里是没有任何有关于元数据的信息的。那么启动集群的过程是怎样的呢？下面来叙述一下：</p>
+<blockquote>
+<p>第一步：
+Namenode在启动时，会先加载name目录下最近的fsimage文件.
+将fsimage里保存的元数据加载到内存当中，这样内存里就有了之前检查点里存储的所有元数据。但是还少了从最近一次检查时间点到关闭系统时的部分数据，也就是edit日志文件里存储的数据。</p>
+<p>第二步：
+加载剩下的edit日志文件
+将从最近一次检查点到目前为止的所有的日志文件加载到内存里，重演一次客户端的操作，这样，内存里就是最新的文件系统的所有元数据了。</p>
+<p>第三步：
+进行检查点设置（满足条件会进行）
+namenode会终止之前正在使用的edit文件,创建一个空的edit日志文件。然后将所有的未合并过的edit日志文件和fsimage文件进行合并，产生一个新的fsimage.</p>
+<p>第四步：
+处于安全模式下，等待datanode节点的心跳反馈，当收到99.9%的块的至少一个副本后，退出安全模式，开始转为正常状态。</p>
+</blockquote>
+<p><img src="Hadoop.assets/image-20210401110453904.png" alt="image-20210401110453904"></p>
+<h4 id="622-第一次启动集群">6.2.2 第一次启动集群</h4>
+<p><img src="Hadoop.assets/image-20210401110508586.png" alt="image-20210401110508586"></p>
+<h3 id="63-secondarynamenode的工作机制">6.3 SecondaryNameNode的工作机制</h3>
+<p>SecondaryNamenode，是HDFS集群中的重要组成部分，它可以==辅助Namenode进行fsimage和editlog的合并工作==，减小editlog文件大小，以便缩短下次Namenode的重启时间，能尽快退出安全模式。</p>
+<p>两个文件的合并周期，称之为检查点机制（checkpoint），是可以通过hdfs-default.xml配置文件进行修改的：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>dfs.namenode.checkpoint.period<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;value&gt;</span>3600<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;description&gt;</span>两次检查点间隔的秒数，默认是1个小时<span class="nt">&lt;/description&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>		 
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>dfs.namenode.checkpoint.txns<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;value&gt;</span>1000000<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;description&gt;</span>txid执行的次数达到100w次，也执行checkpoint<span class="nt">&lt;/description&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>		 
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>dfs.namenode.checkpoint.check.period<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;value&gt;</span>60<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;description&gt;</span>60秒一检查txid的执行次数<span class="nt">&lt;/description&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="Hadoop.assets/image-20210401110748741.png" alt="image-20210401110748741"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">edits_inprogress  <span class="c1"># 正在使用中的editslog</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="nv">$HADOOP_HOME</span>/tmp/dfs/namesecondary/current
+</span></span><span class="line"><span class="cl">	<span class="c1"># edits 和 fsimage  来自于namenode </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>通过上图，可以总结如下:</p>
+<blockquote>
+<ol>
+<li>SecondaryNamenode请求Namenode停止使用正在编辑的editlog文件，Namenode会创建新的editlog文件(小了吧)，同时更新seed_txid文件。</li>
+<li>SecondaryNamenode通过HTTP协议获取Namenode上的fsimage和editlog文件。</li>
+<li>SecondaryNamenode将fsimage读进内存当中，并逐步分析editlog文件里的数据，进行合并操作，然后写入新文件fsimage_x.ckpt文件中。</li>
+<li>SecondaryNamenode将新文件fsimage_x.ckpt通过HTTP协议发送回Namenode。</li>
+<li>Namenode再进行更名操作。</li>
+</ol>
+</blockquote>
+<h2 id="第七章-hdfs的读写流程">第七章 HDFS的读写流程</h2>
+<h3 id="71-读流程详解">7.1 读流程详解</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">读操作：  
+</span></span><span class="line"><span class="cl">	- hdfs dfs -get /file02 ./file02
+</span></span><span class="line"><span class="cl">	- hdfs  dfs -copyToLocal  /file02 ./file02
+</span></span><span class="line"><span class="cl">	- FSDataInputStream fsis = fs.open(&#34;/input/a.txt&#34;);
+</span></span><span class="line"><span class="cl">	- fsis.read(byte[] a)
+</span></span><span class="line"><span class="cl">	- fs.copyToLocal(path1,path2)	
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="Hadoop.assets/image-20210401110919469.png" alt="image-20210401110919469"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. 客户端通过调用FileSystem对象的open()方法来打开希望读取的文件，对于HDFS来说，这个对象是DistributedFileSystem，它通过使用远程过程调用(RPC)来调用namenode,以确定文件起始块的位置
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2. 对于每一个块,NameNode返回存有该块副本的DataNode地址,并根据距离客户端的远近来排序。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">3. DistributedFileSystem实例会返回一个FSDataInputStream对象（支持文件定位功能）给客户端以便读取数据，接着客户端对这个输入流调用read()方法
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">4. FSDataInputStream随即连接距离最近的文件中第一个块所在的DataNode,通过对数据流反复调用read()方法，可以将数据从DataNode传输到客户端
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">5. 当读取到块的末端时，FSInputStream关闭与该DataNode的连接，然后寻找下一个块的最佳DataNode
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">6. 客户端从流中读取数据时，块是按照打开FSInputStream与DataNode的新建连接的顺序读取的。它也会根据需要询问NameNode来检索下一批数据块的DataNode的位置。一旦客户端完成读取，就对FSInputStream调用close方法
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">注意：在读取数据的时候，如果FSInputStream与DataNode通信时遇到错误，会尝试从这个块的最近的DataNode读取数据，并且记住那个故障的DataNode,保证后续不会反复读取该节点上后续的块。FInputStream也会通过校验和确认从DataNode发来的数据是否完整。如果发现有损坏的块，FSInputStream会从其他的块读取副本，并且将损坏的块通知给NameNode
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="72-写流程的详解">7.2 写流程的详解</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">写操作： 
+</span></span><span class="line"><span class="cl">	- hdfs dfs -put ./file02 /file02
+</span></span><span class="line"><span class="cl">	- hdfs  dfs -copyFromLocal  ./file02 /file02
+</span></span><span class="line"><span class="cl">	- FSDataOutputStream fsout = fs.create(path)；fsout.write(byte[])
+</span></span><span class="line"><span class="cl">	- fs.copyFromLocal(path1,path2)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="Hadoop.assets/image-20210401111009995.png" alt="image-20210401111009995"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span><span class="lnt">8
+</span><span class="lnt">9
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. 客户端通过对DistributedFileSystem对象调用create()方法来新建文件
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2. DistributedFileSystem对namenode创建一个RPC调用，在文件系统的命名空间中新建一个文件，此时该文件中还没有相应的数据块
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">3. namenode执行各种不同的检查，以确保这个文件不存在以及客户端有新建该文件的权限。如果检查通过，namenode就会为创建新文件记录一条事务记录(否则，文件创建失败并向客户端抛出一个IOException异常)。DistributedFileSystem向客户端返回一个FSDataOuputStream对象，由此客户端可以开始写入数据，
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">4. 在客户端写入数据时，FSOutputStream将它分成一个个的数据包(packet)，并写入一个内部队列，这个队列称为“数据队列”（data queue）。DataStreamer线程负责处理数据队列，它的责任是挑选出合适存储数据复本的一组datanode，并以此来要求namenode分配新的数据块。这一组datanode将构成一个管道，以默认复本3个为例，所以该管道中有3个节点.DataStreamer将数据包流式传输到管道中第一个datanode，该datanode存储数据包并将它发送到管道中的第2个datanode，同样，第2个datanode存储该数据包并且发送给管道中的第三个datanode。DataStreamer在将一个个packet流式传输到第一个Datanode节点后，还会将此packet从数据队列移动到另一个队列确认队列(ack queue)中。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">5. datanode写入数据成功之后，会为ResponseProcessor线程发送一个写入成功的信息回执，当收到管道中所有的datanode确认信息后，ResponseProcessoer线程会将该数据包从确认队列中删除。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>如果任何datanode在写入数据期间发生故障，则执行以下操作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. 首先关闭管道，把确认队列中的所有数据包都添加回数据队列的最前端，以确保故障节点下游的datanode不会漏掉任何一个数据包
+</span></span><span class="line"><span class="cl">2. 为存储在另一正常datanode的当前数据块制定一个新标识，并将该标识传送给namenode，以便故障datanode在恢复后可以删除存储的部分数据块
+</span></span><span class="line"><span class="cl">3. 从管道中删除故障datanode，基于两个正常datanode构建一条新管道，余下数据块写入管道中正常的datanode
+</span></span><span class="line"><span class="cl">4. namenode注意到块复本不足时，会在一个新的Datanode节点上创建一个新的复本。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">注意：在一个块被写入期间可能会有多个datanode同时发生故障，但概率非常低。只要写入了dfs.namenode.replication.min的复本数（默认1），写操作就会成功，并且这个块可以在集群中异步复制，直到达到其目标复本数dfs.replication的数量（默认3）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="第八章-zookeeper的概述">第八章 Zookeeper的概述</h2>
+<h3 id="81-zookeeper是什么">8.1 Zookeeper是什么</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. zookeeper是一个为分布式应用程序提供的一个分布式开源协调服务框架。是Google的Chubby的一个开源实现，是Hadoop和Hbase的重要组件。主要用于解决分布式集群中应用系统的一致性问题。
+</span></span><span class="line"><span class="cl">2. 提供了基于类似Unix系统的目录节点树方式的数据存储。
+</span></span><span class="line"><span class="cl">3. 可用于维护和监控存储的数据的状态的变化，通过监控这些数据状态的变化，从而达到基于数据的集群管理
+</span></span><span class="line"><span class="cl">4. 提供了一组原语(机器指令)，提供了java和c语言的接口
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="82-zookeeper的特点">8.2 Zookeeper的特点</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. 也是一个分布式集群，一个领导者(leader),多个跟随者(follower).
+</span></span><span class="line"><span class="cl">2. 集群中只要有半数以上的节点存活，Zookeeper集群就能正常服务。
+</span></span><span class="line"><span class="cl">3. 全局数据一致性：每个server保存一份相同的数据副本，client无论连接到哪个server,数据都是一致的。
+</span></span><span class="line"><span class="cl">4. 更新请求按顺序进行：来自同一个client的更新请求按其发送顺序依次执行
+</span></span><span class="line"><span class="cl">5. 数据更新的原子性：一次数据的更新要么成功，要么失败
+</span></span><span class="line"><span class="cl">6. 数据的实时性：在一定时间范围内，client能读到最新数据。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="Hadoop.assets/image-20210401111303037.png" alt="image-20210401111303037"></p>
+<h3 id="83-zookeeper的数据模型">8.3 Zookeeper的数据模型</h3>
+<p>Zookeeper的数据模型采用的与Unix文件系统类似的层次化的树形结构。我们可以将其理解为一个具有高可用特征的文件系统。这个文件系统中没有文件和目录，而是统一使用&quot;节点&quot;(node)的概念，称之为znode。znode既可以作为保存数据的容器(如同文件),也可以作为保存其他znode的容器(如同目录)。所有的znode构成了一个层次化的命名空间。</p>
+<p><img src="Hadoop.assets/image-20210401111326294.png" alt="image-20210401111326294"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">- Zookeeper 被设计用来实现协调服务（这类服务通常使用小数据文件)，而不是用于大容量数据存储，因此一个znode能存储的数据被限制在1MB以内，
+</span></span><span class="line"><span class="cl">- 每个znode都可以通过其路径唯一标识。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="84-zookeeper的应用场景">8.4 Zookeeper的应用场景</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. 统一配置管理
+</span></span><span class="line"><span class="cl">2. 统一集群管理
+</span></span><span class="line"><span class="cl">3. 服务器节点动态上下线感知
+</span></span><span class="line"><span class="cl">4. 软负载均衡等
+</span></span><span class="line"><span class="cl">5. 分布式锁
+</span></span><span class="line"><span class="cl">6. 分布式队列
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="第九章-zookeeper的安装">第九章 Zookeeper的安装</h2>
+<h3 id="91-安装与环境变量的配置">9.1. 安装与环境变量的配置</h3>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. 将zookeeper-3.4.10.tar.gz上传到/root中
+</span></span><span class="line"><span class="cl">2. 解压
+</span></span><span class="line"><span class="cl">   [root@qianfeng01 ~]# tar -zxvf zookeeper-3.4.10.tar.gz -C /opt/apps/
+</span></span><span class="line"><span class="cl">3. 更名zookeeper
+</span></span><span class="line"><span class="cl">   [root@qianfeng01 ~]# cd /opt/apps/
+</span></span><span class="line"><span class="cl">   [root@qianfeng01 local]# mv zookeeper-3.4.10 zookeeper
+</span></span><span class="line"><span class="cl">4. 配置环境变量
+</span></span><span class="line"><span class="cl">   [root@qianfeng01 local]# vi  /etc/profile
+</span></span><span class="line"><span class="cl">   .........省略......
+</span></span><span class="line"><span class="cl">   export ZOOKEEPER_HOME=/opt/apps/zookeeper
+</span></span><span class="line"><span class="cl">   export PATH=$ZOOKEEPER_HOME/bin:$PATH
+</span></span><span class="line"><span class="cl">5. 使当前会话生效
+</span></span><span class="line"><span class="cl">   [root@qianfeng01 local]# source /etc/profile
+</span></span><span class="line"><span class="cl">6. 检查如下：
+</span></span><span class="line"><span class="cl">如果只检查环境变量是否配置成功，只需要使用tab键进行补全zk，是否zookeeper的相关脚本提示即可。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="92-集群模式的配置">9.2. 集群模式的配置</h3>
+<h4 id="921-zookeeper的服务进程布局">9.2.1 Zookeeper的服务进程布局</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">qianfeng01		QuorumPeerMain
+</span></span><span class="line"><span class="cl">qianfeng02		QuorumPeerMain
+</span></span><span class="line"><span class="cl">qianfeng03		QuorumPeerMain
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="922-修改zoocfg文件">9.2.2 修改zoo.cfg文件</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 local<span class="o">]</span><span class="c1"># cd ./zookeeper/conf/               </span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 conf<span class="o">]</span><span class="c1"># cp  zoo_sample.cfg  zoo.cfg   #复制出zoo.cfg文件</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 conf<span class="o">]</span><span class="c1"># vi zoo.cfg</span>
+</span></span><span class="line"><span class="cl"><span class="nv">tickTime</span><span class="o">=</span>2000				<span class="c1"># 定义的时间单元(单位毫秒)，下面的两个值都是tickTime的倍数。</span>
+</span></span><span class="line"><span class="cl"><span class="nv">initLimit</span><span class="o">=</span>10				<span class="c1"># follower连接并同步leader的初始化连接时间。</span>
+</span></span><span class="line"><span class="cl"><span class="nv">syncLimit</span><span class="o">=</span>5					<span class="c1"># 心跳机制的时间(正常情况下的请求和应答的时间)</span>
+</span></span><span class="line"><span class="cl"><span class="nv">dataDir</span><span class="o">=</span>/usr/local/zookeeper/zkData       <span class="c1"># 修改zookeeper的存储路径，zkData目录一会要创建出来</span>
+</span></span><span class="line"><span class="cl"><span class="nv">clientPort</span><span class="o">=</span>2181							 							<span class="c1"># 客户端连接服务器的port</span>
+</span></span><span class="line"><span class="cl">server.1<span class="o">=</span>qianfeng01:2888:3888    			 		<span class="c1"># 添加三个服务器节点</span>
+</span></span><span class="line"><span class="cl">server.2<span class="o">=</span>qianfeng02:2888:3888
+</span></span><span class="line"><span class="cl">server.3<span class="o">=</span>qianfeng03:2888:3888
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">解析Server.id<span class="o">=</span>ip:port1:port2
+</span></span><span class="line"><span class="cl">id:		服务器的id号，对应zkData/myid文件内的数字
+</span></span><span class="line"><span class="cl">ip: 	服务器的ip地址
+</span></span><span class="line"><span class="cl">port1:	follower与leader交互的port
+</span></span><span class="line"><span class="cl">port2:	选举期间使用的port
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">注意：此配置文件中，不支持汉字注释
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="923-添加myid">9.2.3 添加myid</h4>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="c1"># 在$ZOOKEEPER_HOME/zkData目录下添加myid文件，内容为server的id号</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 conf<span class="o">]</span><span class="c1"># cd ..</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 zookeeper<span class="o">]</span><span class="c1"># mkdir zkData</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 zookeeper<span class="o">]</span><span class="c1"># cd zkData</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 zkData<span class="o">]</span><span class="c1"># echo &#34;1&#34; &gt;&gt; myid</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="924-搭建其他两个server节点的环境">9.2.4 搭建其他两个server节点的环境</h4>
+<p>**1）**使用scp命令将zookeeper环境 复制到qianfeng02和qianfeng03中</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 zkData<span class="o">]</span><span class="c1"># cd /usr/local</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 apps<span class="o">]</span><span class="c1"># scp -r zookeeper qianfeng02:/usr/local</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 apps# scp -r zookeeper qianfeng03:/usr/local
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2）</strong> 使用scp命令拷贝/etc/profile到两台机器上(别忘记source一下)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 apps<span class="o">]</span><span class="c1"># scp /etc/profile qianfeng02:/etc/ 	</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 apps<span class="o">]</span><span class="c1"># scp /etc/profile qianfeng03:/etc/</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>3）</strong> 修改qianfeng02的myid文件的内容为2</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># ssh qianfeng02</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng02 ~<span class="o">]</span><span class="c1"># echo &#34;2&#34; &gt; /opt/apps/zookeeper/zkData/myid</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>4）</strong>  修改qianfeng03的myid文件的内容为3</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng02 ~<span class="o">]</span><span class="c1"># ssh qianfeng03</span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng03 ~<span class="o">]</span><span class="c1"># echo &#34;3&#34; &gt; /opt/apps/zookeeper/zkData/myid</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="925-启动zookeeper">9.2.5 启动zookeeper</h4>
+<p>**1）**三台机器上都启动zookeeper的服务	(注意保证防火墙是关闭的)</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># zkServer.sh start</span>
+</span></span><span class="line"><span class="cl">再查看一下状态
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># zkServer.sh status</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2）</strong> 启动客户端的操作：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-sh" data-lang="sh"><span class="line"><span class="cl">zkCli.sh <span class="o">[</span>-server<span class="o">]</span> <span class="o">[</span> ip:port<span class="o">]</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">reg:
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># zkCli.sh								#启动客户端，连接本地服务进程 </span>
+</span></span><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 ~<span class="o">]</span><span class="c1"># zkCli.sh -server qianfeng02:2181			#启动客户端，连接qianfeng02上的服务进程 </span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="第十章-zookeeper的shell操作">第十章 Zookeeper的Shell操作</h2>
+<table>
+<thead>
+<tr>
+<th>命令</th>
+<th>描述</th>
+<th>示例</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ls</td>
+<td>查看某个目录包含的所有文件</td>
+<td>ls /</td>
+</tr>
+<tr>
+<td>ls2</td>
+<td>查看某个目录包含的所有文件，与ls不同的是它查看到time、version等信息</td>
+<td>ls2 /</td>
+</tr>
+<tr>
+<td>create</td>
+<td>创建znode，并需要设置初始内容</td>
+<td>create /test &ldquo;test&rdquo;<br />create -e /test &ldquo;test&rdquo;</td>
+</tr>
+<tr>
+<td>get</td>
+<td>获取znode的数据</td>
+<td>get /test</td>
+</tr>
+<tr>
+<td>set</td>
+<td>修改znode的内容</td>
+<td>set /test &ldquo;test2&rdquo;</td>
+</tr>
+<tr>
+<td>delete</td>
+<td>删除znode</td>
+<td>delete /test</td>
+</tr>
+<tr>
+<td>quit</td>
+<td>退出客户端</td>
+<td></td>
+</tr>
+<tr>
+<td>help</td>
+<td>帮助命令</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<h2 id="第十一章-yarn的概述">第十一章 YARN的概述</h2>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">为克服Hadoop 1.0中HDFS和MapReduce存在的各种问题而提出的，针对Hadoop 1.0中的MapReduce在扩展性和多框架支持方面的不足，提出了全新的资源管理框架YARN.
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">Apache YARN（Yet another Resource Negotiator的缩写）是Hadoop集群的资源管理系统，负责为计算程序提供服务器计算资源，相当于一个分布式的操作系统平台，而MapReduce等计算程序则相当于运行于操作系统之上的应用程序。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">yarn被引入Hadoop2,最初是为了改善MapReduce的实现，但是因为具有足够的通用性，同样可以支持其他的分布式计算模式，比如Spark，Tez等计算框架。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="Hadoop.assets/image-20210401112649301.png" alt="image-20210401112649301"></p>
+<h2 id="第十二章-yarn的架构及组件">第十二章 YARN的架构及组件</h2>
+<h3 id="121-mapreduce-1x的简介">12.1. MapReduce 1.x的简介</h3>
+<p>第一代Hadoop，由分布式存储系统HDFS和分布式计算框架MapReduce组成，其中，HDFS由一个NameNode和多个DataNode组成，MapReduce由一个JobTracker和多个TaskTracker组成，对应Hadoop版本为Hadoop 1.x和0.21.X，0.22.x。</p>
+<p><strong>1) MapReduce1的角色</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-1.Client	：作业提交发起者。
+</span></span><span class="line"><span class="cl">-2.JobTracker	：初始化作业，分配作业，与TaskTracker通信，协调整个作业。
+</span></span><span class="line"><span class="cl">-3.TaskTracker ：保持JobTracker通信，在分配的数据片段上执行MapReduce任务。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><img src="Hadoop.assets/image-20210414093345557.png" alt="image-20210414093345557"></p>
+<p><strong>2) MapReduce执行流程</strong></p>
+<p><img src="Hadoop.assets/image-20210414093407057.png" alt="image-20210414093407057"></p>
+<p>**步骤1）**提交作业</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">编写MapReduce程序代码,创建job对象，并进行配置，比如输入和输出路径，压缩格式等，然后通过JobClinet来提交作业。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**步骤2）**作业的初始化</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">客户端提交完成后，JobTracker会将作业加入队列，然后进行调度，默认的调度方法是FIFO调试方式。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**步骤3）**任务的分配</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">TaskTracker和JobTracker之间的通信与任务的分配是通过心跳机制完成的。
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">TaskTracker会主动向JobTracker询问是否有作业要做，如果自己可以做，那么就会申请到作业任务，这个任务可以是MapTask也可能是ReduceTask。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**步骤4）**任务的执行</p>
+<p>申请到任务后，TaskTracker会做如下事情：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-1. 拷贝代码到本地
+</span></span><span class="line"><span class="cl">-2. 拷贝任务的信息到本地
+</span></span><span class="line"><span class="cl">-3. 启动JVM运行任务
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**步骤5）**状态与任务的更新</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">任务在运行过程中，首先会将自己的状态汇报给TaskTracker，然后由TaskTracker汇总告之JobTracker。任务进度是通过计数器来实现的。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>步骤6）</strong> 作业的完成</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">JobTracker是在接受到最后一个任务运行完成后，才会将任务标记为成功。此时会做删除中间结果等善后处理工作。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="122-yarn的设计思想">12.2. YARN的设计思想</h3>
+<p>yarn的基本思想是将资源管理和作业调度/监视功能划分为单独的守护进程。其思想是拥有一个全局ResourceManager (RM)，以及每个应用程序拥有一个ApplicationMaster (AM)。应用程序可以是单个作业，也可以是一组作业</p>
+<p><img src="Hadoop.assets/image-20210414095815391.png" alt="image-20210414095815391"></p>
+<p>一个ResourceManager和多个NodeManager构成了yarn资源管理框架。他们是yarn启动后长期运行的守护进程，来提供核心服务。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">ResourceManager，是在系统中的所有应用程序之间仲裁资源的最终权威，即管理整个集群上的所有资源分配,内部含有一个Scheduler(资源调度器)
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">NodeManager，是每台机器的资源管理器，也就是单个节点的管理者，负责启动和监视容器(container)资源使用情况，并向ResourceManager及其 Scheduler报告使用情况
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">container:即集群上的可使用资源，包含cpu、内存、磁盘、网络等
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">ApplicationMaster（简称AM）实际上是框架的特定的库，每启动一个应用程序，都会启动一个AM，它的任务是与ResourceManager协商资源，并与NodeManager一起执行和监视任务
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>**扩展）**YARN与MapReduce1的比较</p>
+<p><img src="Hadoop.assets/20191016063209.jpg" alt="img"></p>
+<h3 id="123-yarn的配置">12.3. YARN的配置</h3>
+<p>yarn属于hadoop的一个组件，不需要再单独安装程序，hadoop中已经存在配置文件的设置，本身就是一个集群，有主节点和从节点。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">注意&lt;value&gt;&lt;/value&gt;之间的值不能有空格
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在mapred-site.xml中的配置如下：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!--用于执行MapReduce作业的运行时框架--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>mapreduce.framework.name<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;value&gt;</span>yarn<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--历史任务的内部通讯地址--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>MapReduce.jobhistory.address<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;value&gt;</span>qianfeng01:10020<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--历史任务的外部监听页面--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>MapReduce.jobhistory.webapp.address<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;value&gt;</span>qianfeng01:19888<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>在yarn-site.xml中的配置如下:</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-xml" data-lang="xml"><span class="line"><span class="cl"><span class="c">&lt;!--配置resourcemanager的主机--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>yarn.resourcemanager.hostname<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;value&gt;</span>qianfeng01<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--配置yarn的shuffle服务--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>yarn.nodemanager.aux-services<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;value&gt;</span>mapreduce_shuffle<span class="nt">&lt;/value&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span> 
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--指定shuffle对应的类 --&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span> 
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;name&gt;</span>yarn.nodemanager.aux-services.MapReduce_shuffle.class<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">    <span class="nt">&lt;value&gt;</span>org.apache.hadoop.mapred.ShuffleHandler<span class="nt">&lt;/value&gt;</span> 
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--配置resourcemanager的scheduler的内部通讯地址--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;name&gt;</span>yarn.resourcemanager.scheduler.address<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;value&gt;</span>qianfeng01:8030<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--配置resoucemanager的资源调度的内部通讯地址--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;name&gt;</span>yarn.resourcemanager.resource-tracker.address<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;value&gt;</span>qianfeng01:8031<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--配置resourcemanager的内部通讯地址--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;name&gt;</span>yarn.resourcemanager.address<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;value&gt;</span>qianfeng01:8032<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--配置resourcemanager的管理员的内部通讯地址--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;name&gt;</span>yarn.resourcemanager.admin.address<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;value&gt;</span>qianfeng01:8033<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl"><span class="c">&lt;!--配置resourcemanager的web ui 的监控页面--&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;property&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;name&gt;</span>yarn.resourcemanager.webapp.address<span class="nt">&lt;/name&gt;</span>
+</span></span><span class="line"><span class="cl">	<span class="nt">&lt;value&gt;</span>qianfeng01:8088<span class="nt">&lt;/value&gt;</span>
+</span></span><span class="line"><span class="cl"><span class="nt">&lt;/property&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>1) 日志位置</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">jps:当启动进程时出错了解决步骤:可以查看日志
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">如果是hdfs上的问题,则查看对应的日志
+</span></span><span class="line"><span class="cl">less 或 tail -1000 $HADOOP_HOME/logs/hadoop-{user.name}-{jobname}-{hostname}.log
+</span></span><span class="line"><span class="cl">如果是yarn,则查看
+</span></span><span class="line"><span class="cl">less 或 tail -1000 $HADOOP_HOME/logs/yarn-{user.name}-{jobname}-{hostname}.log
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>2) 历史服务</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">如果需要查看YARN的作业历史，需要打开历史服务:
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">1. 停止当前的YARN进程
+</span></span><span class="line"><span class="cl">stop-yarn.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">2. 在yarn-site.xml中添加配置
+</span></span><span class="line"><span class="cl">&lt;!-- 开启日志聚集功能 --&gt;
+</span></span><span class="line"><span class="cl">&lt;property&gt;
+</span></span><span class="line"><span class="cl">    &lt;name&gt;yarn.log-aggregation-enable&lt;/name&gt;
+</span></span><span class="line"><span class="cl">    &lt;value&gt;true&lt;/value&gt;
+</span></span><span class="line"><span class="cl">&lt;/property&gt;
+</span></span><span class="line"><span class="cl">&lt;!-- 日志信息保存在文件系统上的最长时间,单位为秒--&gt;
+</span></span><span class="line"><span class="cl">&lt;property&gt;
+</span></span><span class="line"><span class="cl">    &lt;name&gt;yarn.log-aggregation.retain-seconds&lt;/name&gt;
+</span></span><span class="line"><span class="cl">    &lt;value&gt;640800&lt;/value&gt;
+</span></span><span class="line"><span class="cl">&lt;/property&gt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">3. 分发到其他节点
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">4. 启动YARN进程
+</span></span><span class="line"><span class="cl">start-yarn.sh
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">5. 开启历史服务
+</span></span><span class="line"><span class="cl">mr-jobhistory-server.sh start historyserver
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="第十三章-yarn的执行原理">第十三章 YARN的执行原理</h2>
+<p>在MR程序运行时，有五个独立的进程：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">-  YarnRunner:用于提交作业的客户端程序
+</span></span><span class="line"><span class="cl">-  ResourceManager:yarn资源管理器，负责协调集群上计算机资源的分配
+</span></span><span class="line"><span class="cl">-  NodeManager:yarn节点管理器，负责启动和监视集群中机器上的计算容器（container）
+</span></span><span class="line"><span class="cl">-  Application Master:负责协调运行MapReduce作业的任务，他和任务都在容器中运行，这些容器由资源管理器分配并由节点管理器进行管理。
+</span></span><span class="line"><span class="cl">-  HDFS:用于共享作业所需文件。
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>整个过程如下图描述:</p>
+<p><img src="Hadoop.assets/image-20210414100109033.png" alt="image-20210414100109033"></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">1. 调用waitForCompletion方法每秒轮询作业的进度，内部封装了submit()方法，用于创建JobCommiter实例，并且调用其的submitJobInternal方法。提交成功后，如果有状态改变，就会把进度报告到控制台。错误也会报告到
+</span></span><span class="line"><span class="cl">控制台
+</span></span><span class="line"><span class="cl">2. JobCommiter实例会向ResourceManager申请一个新应用ID，用于MapReduce作业ID。这期间JobCommiter也会进行检查输出路径的情况，以及计算输入分片。
+</span></span><span class="line"><span class="cl">3. 如果成功申请到ID,就会将运行作业所需要的资源（包括作业jar文件，配置文件和计算所得的输入分片元数据文件）上传到一个用ID命名的目录下的HDFS上。此时副本个数默认是10.
+</span></span><span class="line"><span class="cl">4. 准备工作已经做好，再通知ResourceManager调用submitApplication方法提交作业。
+</span></span><span class="line"><span class="cl">5. ResourceManager调用submitApplication方法后，会通知Yarn调度器（Scheduler），调度器分配一个容器，在节点管理器的管理下在容器中启动 application master进程。
+</span></span><span class="line"><span class="cl">6. application master的主类是MRAppMaster，其主要作用是初始化任务，并接受来自任务的进度和完成报告。
+</span></span><span class="line"><span class="cl">7. 然后从HDFS上接受资源，主要是split。然后为每一个split创建MapTask以及参数指定的ReduceTask，任务ID在此时分配
+</span></span><span class="line"><span class="cl">8. 然后Application Master会向资源管理器请求容器，首先为MapTask申请容器，然后再为ReduceTask申请容器。（5%）
+</span></span><span class="line"><span class="cl">9. 一旦ResourceManager中的调度器（Scheduler），为Task分配了一个特定节点上的容器，Application Master就会与NodeManager进行通信来启动容器。
+</span></span><span class="line"><span class="cl">10. 运行任务是由YarnChild来执行的，运行任务前，先将资源本地化（jar文件，配置文件，缓存文件）
+</span></span><span class="line"><span class="cl">11. 然后开始运行MapTask或ReduceTask。
+</span></span><span class="line"><span class="cl">12. 当收到最后一个任务已经完成的通知后，application master会把作业状态设置为success。然后Job轮询时，知道成功完成，就会通知客户端，并把统计信息输出到控制台
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="第十四章-yarn的案例测试">第十四章 YARN的案例测试</h2>
+<p><strong>MapReduce:</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-shell" data-lang="shell"><span class="line"><span class="cl"><span class="o">[</span>root@qianfeng01 mapreduce<span class="o">]</span><span class="c1"># hadoop jar hadoop-mapreduce-examples-2.7.6.jar wordcount /input /output</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">INFO client.RMProxy: Connecting to ResourceManager at qianfeng01/192.168.10.101:8032
+</span></span><span class="line"><span class="cl">INFO input.FileInputFormat: Total input paths to process : 1
+</span></span><span class="line"><span class="cl">INFO mapreduce.JobSubmitter: number of splits:1
+</span></span><span class="line"><span class="cl">INFO mapreduce.JobSubmitter: Submitting tokens for job: job_1617775349214_0003
+</span></span><span class="line"><span class="cl">INFO impl.YarnClientImpl: Submitted application application_1617775349214_0003
+</span></span><span class="line"><span class="cl">INFO mapreduce.Job: The url to track the job: http://qianfeng01:8088/proxy/application_1617775349214_0003/
+</span></span><span class="line"><span class="cl">INFO mapreduce.Job: Running job: job_1617775349214_0003
+</span></span><span class="line"><span class="cl">INFO mapreduce.Job: Job job_1617775349214_0003 running in uber mode : false
+</span></span><span class="line"><span class="cl">INFO mapreduce.Job:  map 0% reduce 0%
+</span></span><span class="line"><span class="cl">INFO mapreduce.Job:  map 100% reduce 0%
+</span></span><span class="line"><span class="cl">INFO mapreduce.Job:  map 100% reduce 100%
+</span></span><span class="line"><span class="cl">INFO mapreduce.Job: Job job_1617775349214_0003 completed successfully
+</span></span><span class="line"><span class="cl">INFO mapreduce.Job: Counters: 49
+</span></span><span class="line"><span class="cl">	File System Counters
+</span></span><span class="line"><span class="cl">		FILE: Number of bytes read=111
+</span></span><span class="line"><span class="cl">		FILE: Number of bytes written=245331
+</span></span><span class="line"><span class="cl">		FILE: Number of read operations=0
+</span></span><span class="line"><span class="cl">		FILE: Number of large read operations=0
+</span></span><span class="line"><span class="cl">		FILE: Number of write operations=0
+</span></span><span class="line"><span class="cl">		HDFS: Number of bytes read=218
+</span></span><span class="line"><span class="cl">		HDFS: Number of bytes written=69
+</span></span><span class="line"><span class="cl">		HDFS: Number of read operations=6
+</span></span><span class="line"><span class="cl">		HDFS: Number of large read operations=0
+</span></span><span class="line"><span class="cl">		HDFS: Number of write operations=2
+</span></span><span class="line"><span class="cl">	Job Counters 
+</span></span><span class="line"><span class="cl">		Launched map tasks=1
+</span></span><span class="line"><span class="cl">		Launched reduce tasks=1
+</span></span><span class="line"><span class="cl">		Data-local map tasks=1
+</span></span><span class="line"><span class="cl">		Total time spent by all maps in occupied slots (ms)=3359
+</span></span><span class="line"><span class="cl">		Total time spent by all reduces in occupied slots (ms)=3347
+</span></span><span class="line"><span class="cl">		Total time spent by all map tasks (ms)=3359
+</span></span><span class="line"><span class="cl">		Total time spent by all reduce tasks (ms)=3347
+</span></span><span class="line"><span class="cl">		Total vcore-milliseconds taken by all map tasks=3359
+</span></span><span class="line"><span class="cl">		Total vcore-milliseconds taken by all reduce tasks=3347
+</span></span><span class="line"><span class="cl">		Total megabyte-milliseconds taken by all map tasks=3439616
+</span></span><span class="line"><span class="cl">		Total megabyte-milliseconds taken by all reduce tasks=3427328
+</span></span><span class="line"><span class="cl">	Map-Reduce Framework
+</span></span><span class="line"><span class="cl">		Map input records=3
+</span></span><span class="line"><span class="cl">		Map output records=21
+</span></span><span class="line"><span class="cl">		Map output bytes=203
+</span></span><span class="line"><span class="cl">		Map output materialized bytes=111
+</span></span><span class="line"><span class="cl">		Input split bytes=99
+</span></span><span class="line"><span class="cl">		Combine input records=21
+</span></span><span class="line"><span class="cl">		Combine output records=9
+</span></span><span class="line"><span class="cl">		Reduce input groups=9
+</span></span><span class="line"><span class="cl">		Reduce shuffle bytes=111
+</span></span><span class="line"><span class="cl">		Reduce input records=9
+</span></span><span class="line"><span class="cl">		Reduce output records=9
+</span></span><span class="line"><span class="cl">		Spilled Records=18
+</span></span><span class="line"><span class="cl">		Shuffled Maps =1
+</span></span><span class="line"><span class="cl">		Failed Shuffles=0
+</span></span><span class="line"><span class="cl">		Merged Map outputs=1
+</span></span><span class="line"><span class="cl">		GC time elapsed (ms)=126
+</span></span><span class="line"><span class="cl">		CPU time spent (ms)=1250
+</span></span><span class="line"><span class="cl">		Physical memory (bytes) snapshot=451137536
+</span></span><span class="line"><span class="cl">		Virtual memory (bytes) snapshot=4204822528
+</span></span><span class="line"><span class="cl">		Total committed heap usage (bytes)=282591232
+</span></span><span class="line"><span class="cl">	Shuffle Errors
+</span></span><span class="line"><span class="cl">		BAD_ID=0
+</span></span><span class="line"><span class="cl">		CONNECTION=0
+</span></span><span class="line"><span class="cl">		IO_ERROR=0
+</span></span><span class="line"><span class="cl">		WRONG_LENGTH=0
+</span></span><span class="line"><span class="cl">		WRONG_MAP=0
+</span></span><span class="line"><span class="cl">		WRONG_REDUCE=0
+</span></span><span class="line"><span class="cl">	File Input Format Counters 
+</span></span><span class="line"><span class="cl">		Bytes Read=119
+</span></span><span class="line"><span class="cl">	File Output Format Counters 
+</span></span><span class="line"><span class="cl">		Bytes Written=69
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="第十五章-yarn的web-ui查看">第十五章 YARN的Web UI查看</h2>
+<p>使用8088端口，可以查看YARN任务的WebUI</p>
+<p><img src="Hadoop.assets/image-20210414101324462.png" alt="image-20210414101324462"></p>
+
+    </div>
+
+    <div class="post-copyright">
+  <p class="copyright-item">
+    <span class="item-title">Author</span>
+    <span class="item-content">Cyul_Life</span>
+  </p>
+  <p class="copyright-item">
+    <span class="item-title">LastMod</span>
+    <span class="item-content">
+        2022-04-01
+        
+    </span>
+  </p>
+  
+  
+</div>
+<footer class="post-footer">
+      
+      <nav class="post-nav">
+        <a class="prev" href="/post/notestu/">
+            <i class="iconfont icon-left"></i>
+            <span class="prev-text nav-default">数据结构 | 二叉树</span>
+            <span class="prev-text nav-mobile">Prev</span>
+          </a>
+        <a class="next" href="/post/git%E9%83%A8%E7%BD%B2/">
+            <span class="next-text nav-default">hugo_github | 命令</span>
+            <span class="next-text nav-mobile">Next</span>
+            <i class="iconfont icon-right"></i>
+          </a>
+      </nav>
+    </footer>
+  </article>
+        </div>
+        
+
+  
+
+  
+
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="social-links">
+      <a href="https://gitee.com/Cyul_Life" class="iconfont icon-stack-overflow" title="stack-overflow"></a>
+      <a href="https://github.com/luchuancy" class="iconfont icon-github" title="github"></a>
+      <a href="https://weibo.com/u/5515599904" class="iconfont icon-weibo" title="weibo"></a>
+      <a href="https://www.zhihu.com/people/zhi-ming-84-55" class="iconfont icon-zhihu" title="zhihu"></a>
+  <a href="http://luchuancy.github.io/index.xml" type="application/rss+xml" class="iconfont icon-rss" title="rss"></a>
+</div>
+
+<div class="copyright">
+  <span class="power-by">
+    Powered by <a class="hexo-link" href="https://gohugo.io">Hugo</a>
+  </span>
+  <span class="division">|</span>
+  <span class="theme-info">
+    Theme - 
+    <a class="theme-link" href="https://github.com/olOwOlo/hugo-theme-even">Even</a>
+  </span>
+
+  
+
+  <span class="copyright-year">
+    &copy; 
+    2017 - 
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Cyul_Life</span>
+  </span>
+</div>
+
+    </footer>
+
+    <div class="back-to-top" id="back-to-top">
+      <i class="iconfont icon-up"></i>
+    </div>
+  </div>
+  
+  <script src="https://cdn.jsdelivr.net/npm/jquery@3.2.1/dist/jquery.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/slideout@1.0.1/dist/slideout.min.js" integrity="sha256-t+zJ/g8/KXIJMjSVQdnibt4dlaDxc9zXr/9oNPeWqdg=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3.1.20/dist/jquery.fancybox.min.js" integrity="sha256-XVLffZaxoWfGUEbdzuLi7pwaUJv1cecsQJQqGLe7axY=" crossorigin="anonymous"></script>
+
+
+
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
+
+
+
+
+
+
+
+
+</body>
+</html>

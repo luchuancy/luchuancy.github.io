@@ -23,7 +23,7 @@
 
 
 
-<meta name="generator" content="Hugo 0.88.1 with theme even" />
+<meta name="generator" content="Hugo 0.97.2 with theme even" />
 
 
 <link rel="canonical" href="http://luchuancy.github.io/post/git%E9%83%A8%E7%BD%B2/" />
@@ -159,8 +159,8 @@
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ hugo
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ hugo
+</span></span></code></pre></td></tr></table>
 </div>
 </div><p>生成<code>public/</code>在项目文件夹内</p>
 <h1 id="git相关命令">git相关命令</h1>
@@ -176,15 +176,15 @@
 </span><span class="lnt">8
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ cd public
-$ git init
-$ git remote add origin https://github.com/luchuancy/luchuancy.github.io.git
-$ git status //查看本地自己修改了多少文件
-$ git add .   //添加远程不存在的git文件
-$ git commit -m &#34;commit 211109&#34;   //提交修改
-$ git push -u origin master    //更新到远程服务器上
-							//本地的master分支推送到origin主机，同时指定origin为默认主机，后面就可以不加任何参数使用git push了。
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ cd public
+</span></span><span class="line"><span class="cl">$ git init
+</span></span><span class="line"><span class="cl">$ git remote add origin https://github.com/luchuancy/luchuancy.github.io.git
+</span></span><span class="line"><span class="cl">$ git status //查看本地自己修改了多少文件
+</span></span><span class="line"><span class="cl">$ git add .   //添加远程不存在的git文件
+</span></span><span class="line"><span class="cl">$ git commit -m &#34;commit 211109&#34;   //提交修改
+</span></span><span class="line"><span class="cl">$ git push -u origin master    //更新到远程服务器上
+</span></span><span class="line"><span class="cl">							//本地的master分支推送到origin主机，同时指定origin为默认主机，后面就可以不加任何参数使用git push了。
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="git-解除ssl验证">git 解除SSL验证</h1>
 <div class="highlight"><div class="chroma">
@@ -192,8 +192,8 @@ $ git push -u origin master    //更新到远程服务器上
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ git config --global http.sslVerify &#34;false&#34;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ git config --global http.sslVerify &#34;false&#34;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="git访问过慢">git访问过慢</h1>
 <ol>
@@ -207,10 +207,10 @@ $ git push -u origin master    //更新到远程服务器上
 </span><span class="lnt">3
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">// github的ip地址
-github.com ...
-github.global.ssl.fastly.net ...
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">// github的ip地址
+</span></span><span class="line"><span class="cl">github.com ...
+</span></span><span class="line"><span class="cl">github.global.ssl.fastly.net ...
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ol start="2">
 <li>
@@ -226,8 +226,8 @@ github.global.ssl.fastly.net ...
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ ipconfig /flushdns
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ ipconfig /flushdns
+</span></span></code></pre></td></tr></table>
 </div>
 </div><h1 id="ssh-key设置">SSH key设置</h1>
 <ul>
@@ -239,9 +239,9 @@ github.global.ssl.fastly.net ...
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ git config --global user.name &#34;用户名&#34;
-$ git config --global user.email  &#34;邮箱&#34;
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ git config --global user.name &#34;用户名&#34;
+</span></span><span class="line"><span class="cl">$ git config --global user.email  &#34;邮箱&#34;
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>生成SSH密钥</li>
@@ -252,9 +252,9 @@ $ git config --global user.email  &#34;邮箱&#34;
 </span><span class="lnt">2
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ ssh-keygen -t rsa -C &#34;邮箱&#34;
-$ cat id_rsa.pub  // 文件内容即SSH密钥
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ ssh-keygen -t rsa -C &#34;邮箱&#34;
+</span></span><span class="line"><span class="cl">$ cat id_rsa.pub  // 文件内容即SSH密钥
+</span></span></code></pre></td></tr></table>
 </div>
 </div><ul>
 <li>github设置密钥</li>
@@ -264,8 +264,8 @@ $ cat id_rsa.pub  // 文件内容即SSH密钥
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback">$ ssh -T git@github.com // 检查密钥是否设置成功
-</code></pre></td></tr></table>
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">$ ssh -T git@github.com // 检查密钥是否设置成功
+</span></span></code></pre></td></tr></table>
 </div>
 </div>
     </div>
@@ -288,16 +288,12 @@ $ cat id_rsa.pub  // 文件内容即SSH密钥
 <footer class="post-footer">
       
       <nav class="post-nav">
-        <a class="prev" href="/post/go-vscode/">
+        <a class="prev" href="/post/hadoop/">
             <i class="iconfont icon-left"></i>
-            <span class="prev-text nav-default">在VSCode中搭建go环境</span>
+            <span class="prev-text nav-default">Hadoop | 初识</span>
             <span class="prev-text nav-mobile">Prev</span>
           </a>
-        <a class="next" href="/post/gostu_copy/">
-            <span class="next-text nav-default">Golang切片 | copy</span>
-            <span class="next-text nav-mobile">Next</span>
-            <i class="iconfont icon-right"></i>
-          </a>
+        
       </nav>
     </footer>
   </article>
@@ -335,7 +331,7 @@ $ cat id_rsa.pub  // 文件内容即SSH密钥
   <span class="copyright-year">
     &copy; 
     2017 - 
-    2021<span class="heart"><i class="iconfont icon-heart"></i></span><span>Cyul_Life</span>
+    2022<span class="heart"><i class="iconfont icon-heart"></i></span><span>Cyul_Life</span>
   </span>
 </div>
 
@@ -352,7 +348,7 @@ $ cat id_rsa.pub  // 文件内容即SSH密钥
 
 
 
-<script type="text/javascript" src="/js/main.min.c99b103c33d1539acf3025e1913697534542c4a5aa5af0ccc20475ed2863603b.js"></script>
+<script type="text/javascript" src="/js/main.min.64437849d125a2d603b3e71d6de5225d641a32d17168a58106e0b61852079683.js"></script>
 
 
 
